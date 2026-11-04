@@ -1,6 +1,6 @@
 # Judge demo
 
-1. Start Flask and Streamlit as shown in README. The dashboard labels sample values as simulated.
+1. Start Streamlit as shown in README. It runs the application logic in-process; no separate Flask server is needed. The dashboard labels sample values as simulated.
 2. Review available monthly cash and update a profile after registration.
 3. Choose Studio Pro Laptop under Explore products and analyze the buy/wait scenarios.
 4. Try QuietComfort Headphones for a smaller purchase. The displayed price history and trend are labeled generated demo data, never live retailer observations.

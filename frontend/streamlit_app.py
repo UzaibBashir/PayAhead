@@ -1,9 +1,8 @@
 import os
-import requests
 import streamlit as st
 import pandas as pd
+from frontend.local_api import request as local_request
 
-API=os.getenv('PAYAHEAD_API_URL','http://localhost:5000/api')
 st.set_page_config(page_title='PayAhead',page_icon='🌿',layout='wide',initial_sidebar_state='expanded')
 theme=st.sidebar.radio('Appearance',['Light','Dark'],horizontal=True,key='appearance')
 dark=theme=='Dark'
@@ -30,21 +29,14 @@ hr{{border-color:var(--pa-border)}}
 if 'token' not in st.session_state: st.session_state.token=''
 def headers(): return {'Authorization':f"Bearer {st.session_state.token}"} if st.session_state.token else {}
 def api_get(path,**kw):
- try:
-  r=requests.get(API+path,headers=headers(),timeout=4,**kw); return r.json() if r.ok else None
- except requests.RequestException:return None
+ r=local_request('GET',path,headers=headers(),**kw); return r.json() if r.ok else None
 def api_put(path,data):
- try:
-  r=requests.put(API+path,headers={**headers(),'Content-Type':'application/json'},json=data,timeout=10);return r.status_code,r.json()
- except requests.RequestException:return 0,{'error':'Could not reach the PayAhead API.'}
+ r=local_request('PUT',path,headers=headers(),json=data);return r.status_code,r.json()
 def api_delete(path):
- try:
-  r=requests.delete(API+path,headers=headers(),timeout=10);return r.status_code,r.json()
- except requests.RequestException:return 0,{'error':'Could not reach the PayAhead API.'}
+ r=local_request('DELETE',path,headers=headers());return r.status_code,r.json()
 def api_post(path,data=None,files=None):
- try:
-  r=requests.post(API+path,headers=headers(),json=data,files=files,timeout=20); return r.status_code,r.json()
- except requests.RequestException:return 0,{'error':'Could not reach the PayAhead API. Start the Flask backend first.'}
+ normalized_files={key:(value[0],value[1] if isinstance(value[1],bytes) else value[1].getvalue(),value[2]) for key,value in (files or {}).items()}
+ r=local_request('POST',path,headers=headers(),json=data,files=normalized_files or None); return r.status_code,r.json()
 with st.sidebar:
  st.markdown('## 🌿 payahead')
  st.caption('THINK BEFORE YOU SPEND')
@@ -80,7 +72,7 @@ if order_token and st.session_state.token:
  else: st.error(capture_result.get('error','Could not verify PayPal capture.'))
  st.query_params.clear()
 if not dashboard:
- st.title('PayAhead'); st.error('The API is unavailable. Start it with `python backend/app.py` and refresh.'); st.stop()
+ st.title('PayAhead'); st.error('Could not load your workspace. Check the app logs and database configuration, then refresh.'); st.stop()
 profile=dashboard['profile']; metrics=dashboard['metrics']; currency=metrics.get('currency','USD')
 def fmt(n): return f"{currency} {n:,.0f}"
 st.markdown(f"<div style='color:{colors['accent']};font-size:.72rem;font-weight:700;letter-spacing:.13em;margin-bottom:.25rem'>PAYAHEAD / {page.upper()}</div>",unsafe_allow_html=True)
@@ -107,11 +99,9 @@ if page=='Overview':
    debt=st.number_input('Debt payments',min_value=0.0,value=float(profile['debt']),step=50.0)
    currency_choice=st.selectbox('Currency',['USD','EUR','GBP','CAD','AUD','JPY','INR'],index=['USD','EUR','GBP','CAD','AUD','JPY','INR'].index(profile.get('currency','USD')) if profile.get('currency','USD') in ['USD','EUR','GBP','CAD','AUD','JPY','INR'] else 0)
    if st.form_submit_button('Save profile',use_container_width=True):
-    try:
-     r=requests.put(API+'/finances/profile',headers={**headers(),'Content-Type':'application/json'},json={'income':income,'fixed':fixed,'variable':variable,'savings':savings,'debt':debt,'currency':currency_choice},timeout=10)
-     if r.ok: st.success('Profile saved.'); st.rerun()
-     else: st.error(r.json().get('error','Sign in to save a profile.'))
-    except requests.RequestException: st.error('API unavailable.')
+    status,saved=api_put('/finances/profile',{'income':income,'fixed':fixed,'variable':variable,'savings':savings,'debt':debt,'currency':currency_choice})
+    if status==200: st.success('Profile saved.'); st.rerun()
+    else: st.error(saved.get('error','Sign in to save a profile.'))
 elif page=='Explore products':
  query=st.text_input('Search products',placeholder='Laptop, audio, home…'); result=api_get('/products',params={'q':query or ''}) or {'products':[]}; products=result['products']
  

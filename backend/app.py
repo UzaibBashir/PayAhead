@@ -19,7 +19,10 @@ from functools import lru_cache
 load_dotenv()
 def utc_now(): return datetime.now(timezone.utc)
 
-app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')
+database_url=os.getenv('DATABASE_URL','sqlite:///payahead.db')
+if database_url.startswith('postgres://'): database_url='postgresql+psycopg://'+database_url[len('postgres://'):]
+elif database_url.startswith('postgresql://'): database_url='postgresql+psycopg://'+database_url[len('postgresql://'):]
+app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=database_url; app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')
 
 app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:8501')); db=SQLAlchemy(app); jwt=JWTManager(app)
 

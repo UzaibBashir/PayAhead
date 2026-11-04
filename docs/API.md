@@ -1,6 +1,6 @@
 # API reference
 
-Base URL: `http://localhost:5000/api`. JSON is used except for CSV uploads.
+These Flask routes document the server-side handlers used by the Streamlit app. Streamlit invokes them in-process; no separate API server is needed for the app. To develop against the optional HTTP API directly, start `python backend/app.py` and use `http://localhost:5000/api`. JSON is used except for CSV uploads.
 
 - `GET /health`: API and PayPal credential readiness.
 - `POST /auth/register`, `POST /auth/login`: receive JWT bearer tokens.
