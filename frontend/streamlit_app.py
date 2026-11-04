@@ -114,6 +114,12 @@ elif page=='Explore products':
      if p.get('image'): st.image(p['image'],use_container_width=True)
      st.caption(p['category']); st.subheader(p['name']); st.write(p.get('description','')); st.markdown(f"**{p['currency']} {p['price']:,.0f}** · ★ {p['rating']}")
      if st.button('Can I afford it?',key='p_'+p['name'],use_container_width=True): st.session_state['chosen_product']=p; st.session_state['page_selector']='Purchase advisor'; st.rerun()
+     if st.button('Price history',key='h_'+p['name'],use_container_width=True): st.session_state['price_lookup']=p['name']
+ if st.session_state.get('price_lookup'):
+  history=api_get('/price-history',params={'product':st.session_state['price_lookup']})
+  if history and history.get('history'):
+   st.subheader(f"Price history · {history['product']}"); st.caption(history['note']); frame=pd.DataFrame(history['history']); frame['date']=pd.to_datetime(frame['date']); st.line_chart(frame.set_index('date')['price'])
+   if history.get('forecast'): st.metric('Illustrative 30 day estimate',f"{history['forecast']['currency'] if 'currency' in history['forecast'] else ''}{history['forecast']['estimatedPrice']:,.2f}",help=f"Holdout MAE {history['forecast']['holdoutMAE']:.2f}; synthetic series only.")
 elif page=='Purchase advisor':
  result=api_get('/products') or {'products':[]}; products=result['products']; labels=[f"{p['name']} · {p['currency']} {p['price']:,.0f}" for p in products]
  chosen=st.selectbox('Choose a product',labels) if labels else None
@@ -151,6 +157,9 @@ elif page=='Transactions':
   if anomalies.get('anomalies'): st.dataframe(pd.DataFrame(anomalies['anomalies']),use_container_width=True,hide_index=True)
 else:
  st.subheader('Purchase watches')
+ if st.session_state.token and st.button('Check my watches now'):
+  status,evaluated=api_post('/schedule/evaluate',{})
+  st.success(f"Checked {evaluated.get('checked',0)} watches; {len(evaluated.get('created',[]))} new alerts.") if status==200 else st.error(evaluated.get('error','Watch check failed.'))
  if not st.session_state.token: st.info('Sign in to save a price or date watch.')
  else:
   with st.form('schedule_watch'):
@@ -160,6 +169,9 @@ else:
     st.success('Watch saved.') if status==201 else st.error(result.get('error','Could not save watch.'))
   result=api_get('/schedule')
   if result and result.get('schedules'): st.dataframe(pd.DataFrame(result['schedules']),use_container_width=True,hide_index=True)
+  alert_data=api_get('/alerts')
+  if alert_data and alert_data.get('alerts'):
+   st.subheader('Alerts'); [st.warning(a['message']) for a in alert_data['alerts']]
  st.subheader('Cash-flow outlook')
  forecast=api_get('/forecast')
  if forecast: st.info(f"Method: {forecast['method']}. Monthly net estimate: {fmt(forecast['monthlyNet'])}. {forecast['note']}")

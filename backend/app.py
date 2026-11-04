@@ -38,10 +38,14 @@ class Product(db.Model):
 
  id=db.Column(db.Integer,primary_key=True); name=db.Column(db.String(160)); category=db.Column(db.String(70)); price=db.Column(db.Float); currency=db.Column(db.String(3),default='USD'); rating=db.Column(db.Float,default=4.5); image=db.Column(db.String(400)); description=db.Column(db.String(300))
 
+class PriceHistory(db.Model):
+ id=db.Column(db.Integer,primary_key=True); product_name=db.Column(db.String(160),index=True); observed_on=db.Column(db.Date,index=True); price=db.Column(db.Float); currency=db.Column(db.String(3)); source=db.Column(db.String(30),default='synthetic_demo')
 class Schedule(db.Model):
 
  id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); target=db.Column(db.Float); due=db.Column(db.Date); status=db.Column(db.String(20),default='watching')
 
+class ScheduleAlert(db.Model):
+ id=db.Column(db.Integer,primary_key=True); schedule_id=db.Column(db.Integer,db.ForeignKey('schedule.id')); user_id=db.Column(db.Integer); message=db.Column(db.String(300)); created=db.Column(db.DateTime,default=datetime.utcnow); read=db.Column(db.Boolean,default=False)
 class Payment(db.Model):
 
  id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); amount=db.Column(db.Float); currency=db.Column(db.String(3)); paypal_order=db.Column(db.String(100),unique=True); status=db.Column(db.String(30),default='created'); created=db.Column(db.DateTime,default=datetime.utcnow)
@@ -192,6 +196,23 @@ def products():
 
  q=request.args.get('q','').lower(); vals=PRODUCTS+[{'name':p.name,'category':p.category,'price':p.price,'currency':p.currency,'rating':p.rating,'image':p.image,'description':p.description} for p in Product.query.all() if p.name not in {x['name'] for x in PRODUCTS}]; return jsonify(products=[p for p in vals if q in (p['name']+' '+p['category']).lower()])
 
+
+@app.get('/api/products/<int:product_id>/price-history')
+def price_history(product_id):
+ product=Product.query.get_or_404(product_id); rows=PriceHistory.query.filter_by(product_name=product.name).order_by(PriceHistory.observed_on.asc()).all()
+ history=[{'date':r.observed_on.isoformat(),'price':r.price,'currency':r.currency} for r in rows]
+ if len(rows)<8:return jsonify(product=product.name,source='unavailable',history=history,forecast=None,note='Insufficient price observations.')
+ import numpy as np
+ from sklearn.linear_model import LinearRegression
+ x=np.arange(len(rows)).reshape(-1,1);y=np.array([r.price for r in rows]);cut=len(rows)-3;fit=LinearRegression().fit(x[:cut],y[:cut]);holdout=fit.predict(x[cut:]);mae=float(np.mean(np.abs(holdout-y[cut:])));full=LinearRegression().fit(x,y);estimate=max(0,float(full.predict([[len(rows)+1]])[0]))
+ return jsonify(product=product.name,source=rows[0].source,history=history,forecast={'horizonDays':30,'estimatedPrice':round(estimate,2),'holdoutMAE':round(mae,2),'holdoutPoints':len(rows)-cut},note='Generated synthetic demo series; not a retailer quote or guarantee.')
+
+@app.get('/api/price-history')
+def price_history_by_name():
+ name=request.args.get('product',''); product=Product.query.filter_by(name=name).first()
+ if not product:return jsonify(error='Product not found.'),404
+ return price_history(product.id)
+
 @app.post('/api/analyze')
 
 def analyze():
@@ -206,7 +227,13 @@ def analyze():
 
  specialists=run_specialists(product_data,price,m,safe)
 
- return jsonify(product=name,price=price,currency=m['currency'],affordable=safe,risk='low' if safe and ratio<15 else ('moderate' if m['disposableIncome']>=price else 'high'),recommendation='Buy when ready' if safe else 'Wait and build your buffer',reason=f"Your monthly amount after listed expenses and debt is {m['currency']} {m['disposableIncome']:,.0f}. This purchase is {ratio:.0f}% of monthly income. {'Your remaining savings preserve a basic buffer.' if safe else 'Buying now could reduce available cash or your emergency buffer.'}",scenarios=scenarios,agents=[{'status':'complete',**agent} for agent in specialists])
+ recommendation='Buy when ready' if safe else 'Wait and build your buffer'
+ fallback=f"Monthly surplus is {m['currency']} {m['disposableIncome']:,.0f}. The purchase is {ratio:.0f}% of monthly income. {'Your remaining savings preserve a basic buffer.' if safe else 'Buying now could reduce available cash or your emergency buffer.'}"
+ try:
+  from ai.providers import get_provider
+  explanation=get_provider().explain({'currency':m['currency'],'surplus':m['disposableIncome'],'share':ratio,'recommendation':recommendation,'affordable':safe})
+ except Exception as exc: app.logger.warning('AI explanation unavailable: %s',exc); explanation=fallback
+ return jsonify(product=name,price=price,currency=m['currency'],affordable=safe,risk='low' if safe and ratio<15 else ('moderate' if m['disposableIncome']>=price else 'high'),recommendation=recommendation,reason=explanation,scenarios=scenarios,agents=[{'status':'complete',**agent} for agent in specialists])
 
 @app.post('/api/transactions/import')
 
@@ -257,6 +284,28 @@ def list_schedules():
  rows=Schedule.query.filter_by(user_id=int(uid)).order_by(Schedule.due.asc()).all()
 
  return jsonify(schedules=[{'id':r.id,'product':r.product,'target':r.target,'due':r.due.isoformat(),'status':r.status} for r in rows])
+
+
+@app.post('/api/schedule/evaluate')
+def evaluate_schedules():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to evaluate watches.'),401
+ watches=Schedule.query.filter_by(user_id=int(uid),status='watching').all(); cash=metrics(profile(uid))['disposableIncome']; today=date.today(); created=[]
+ for w in watches:
+  product=Product.query.filter_by(name=w.product).first(); reasons=[]
+  if w.due<=today: reasons.append('target date reached')
+  if product and w.target>0 and product.price<=w.target: reasons.append('catalogue price reached target')
+  if product and cash>=product.price: reasons.append('monthly surplus covers catalogue price')
+  if reasons:
+   msg=f"{w.product}: {', '.join(reasons)}. Please review before deciding."
+   if not ScheduleAlert.query.filter_by(schedule_id=w.id,message=msg).first(): db.session.add(ScheduleAlert(schedule_id=w.id,user_id=int(uid),message=msg)); created.append(msg)
+ db.session.commit(); return jsonify(checked=len(watches),created=created,note='Manual check against saved catalogue values; this does not monitor retailers.')
+@app.get('/api/alerts')
+def alerts():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to view alerts.'),401
+ rows=ScheduleAlert.query.filter_by(user_id=int(uid)).order_by(ScheduleAlert.created.desc()).all()
+ return jsonify(alerts=[{'id':a.id,'message':a.message,'created':a.created.isoformat(),'read':a.read} for a in rows])
 
 @app.post('/api/schedule')
 
@@ -319,13 +368,36 @@ def capture():
  except Exception:return jsonify(error='PayPal capture could not be verified.'),502
 
 with app.app_context():
-
  db.create_all()
-
- for p in PRODUCTS:
-
-  if not Product.query.filter_by(name=p['name']).first(): db.session.add(Product(**p))
-
+ for product in PRODUCTS:
+  if not Product.query.filter_by(name=product['name']).first(): db.session.add(Product(**product))
  db.session.commit()
+ if PriceHistory.query.count()==0:
+  import random,math
+  rng=random.Random(1701); today=date.today()
+  for product in PRODUCTS:
+   base=float(product['price'])
+   for month in range(12,0,-1):
+    d=today-timedelta(days=30*month); simulated=base*(1+0.035*math.sin(month*1.7)+rng.uniform(-0.035,0.035))
+    db.session.add(PriceHistory(product_name=product['name'],observed_on=d,price=round(simulated,2),currency=product['currency'],source='synthetic_demo'))
+  db.session.commit()
+def evaluate_all_watches():
+ with app.app_context():
+  watches=Schedule.query.filter_by(status='watching').all(); today=date.today()
+  for w in watches:
+   product=Product.query.filter_by(name=w.product).first(); reasons=[]
+   if w.due<=today: reasons.append('target date reached')
+   if product and w.target>0 and product.price<=w.target: reasons.append('catalogue price reached target')
+   p=profile(w.user_id); cash=metrics(p)['disposableIncome']
+   if product and cash>=product.price: reasons.append('monthly surplus covers catalogue price')
+   if reasons:
+    msg=f"{w.product}: {', '.join(reasons)}. Please review before deciding."
+    if not ScheduleAlert.query.filter_by(schedule_id=w.id,message=msg).first(): db.session.add(ScheduleAlert(schedule_id=w.id,user_id=w.user_id,message=msg))
+  db.session.commit()
+if os.getenv('ENABLE_SCHEDULER','false').lower()=='true':
+ try:
+  from apscheduler.schedulers.background import BackgroundScheduler
+  scheduler=BackgroundScheduler(daemon=True); scheduler.add_job(evaluate_all_watches,'interval',hours=1,id='watch-evaluator',replace_existing=True); scheduler.start()
+ except Exception as exc: app.logger.error('Scheduler did not start: %s',exc)
 
 if __name__=='__main__':app.run(port=int(os.getenv('PORT','5000')),debug=os.getenv('FLASK_DEBUG')=='1')

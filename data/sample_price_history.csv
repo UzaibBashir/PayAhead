@@ -1,0 +1,241 @@
+product,date,price,currency,source
+Air Purifier,2025-11-09,280.25,USD,synthetic_demo
+Air Purifier,2025-12-09,282.25,USD,synthetic_demo
+Air Purifier,2026-01-08,262.46,USD,synthetic_demo
+Air Purifier,2026-02-07,286.16,USD,synthetic_demo
+Air Purifier,2026-03-09,289.51,USD,synthetic_demo
+Air Purifier,2026-04-08,278.01,USD,synthetic_demo
+Air Purifier,2026-05-08,280.73,USD,synthetic_demo
+Air Purifier,2026-06-07,289.52,USD,synthetic_demo
+Air Purifier,2026-07-07,281.97,USD,synthetic_demo
+Air Purifier,2026-08-06,270.6,USD,synthetic_demo
+Air Purifier,2026-09-05,282.12,USD,synthetic_demo
+Air Purifier,2026-10-05,282.01,USD,synthetic_demo
+Carry-on Luggage,2025-11-09,256.34,USD,synthetic_demo
+Carry-on Luggage,2025-12-09,239.03,USD,synthetic_demo
+Carry-on Luggage,2026-01-08,234.34,USD,synthetic_demo
+Carry-on Luggage,2026-02-07,247.66,USD,synthetic_demo
+Carry-on Luggage,2026-03-09,261.11,USD,synthetic_demo
+Carry-on Luggage,2026-04-08,242.34,USD,synthetic_demo
+Carry-on Luggage,2026-05-08,240.73,USD,synthetic_demo
+Carry-on Luggage,2026-06-07,254.44,USD,synthetic_demo
+Carry-on Luggage,2026-07-07,258.59,USD,synthetic_demo
+Carry-on Luggage,2026-08-06,232.85,USD,synthetic_demo
+Carry-on Luggage,2026-09-05,245.94,USD,synthetic_demo
+Carry-on Luggage,2026-10-05,249.58,USD,synthetic_demo
+City Commuter Bike,2025-11-09,808.43,USD,synthetic_demo
+City Commuter Bike,2025-12-09,812.03,USD,synthetic_demo
+City Commuter Bike,2026-01-08,771.74,USD,synthetic_demo
+City Commuter Bike,2026-02-07,808.68,USD,synthetic_demo
+City Commuter Bike,2026-03-09,795.27,USD,synthetic_demo
+City Commuter Bike,2026-04-08,780.55,USD,synthetic_demo
+City Commuter Bike,2026-05-08,791.35,USD,synthetic_demo
+City Commuter Bike,2026-06-07,813.54,USD,synthetic_demo
+City Commuter Bike,2026-07-07,798.44,USD,synthetic_demo
+City Commuter Bike,2026-08-06,776.05,USD,synthetic_demo
+City Commuter Bike,2026-09-05,817.44,USD,synthetic_demo
+City Commuter Bike,2026-10-05,825.42,USD,synthetic_demo
+Compact Projector,2025-11-09,471.22,USD,synthetic_demo
+Compact Projector,2025-12-09,465.5,USD,synthetic_demo
+Compact Projector,2026-01-08,441.33,USD,synthetic_demo
+Compact Projector,2026-02-07,488.31,USD,synthetic_demo
+Compact Projector,2026-03-09,483.27,USD,synthetic_demo
+Compact Projector,2026-04-08,463.33,USD,synthetic_demo
+Compact Projector,2026-05-08,462.46,USD,synthetic_demo
+Compact Projector,2026-06-07,468.0,USD,synthetic_demo
+Compact Projector,2026-07-07,480.1,USD,synthetic_demo
+Compact Projector,2026-08-06,455.46,USD,synthetic_demo
+Compact Projector,2026-09-05,448.54,USD,synthetic_demo
+Compact Projector,2026-10-05,478.81,USD,synthetic_demo
+Creator Laptop 16,2025-11-09,1932.3,USD,synthetic_demo
+Creator Laptop 16,2025-12-09,1856.11,USD,synthetic_demo
+Creator Laptop 16,2026-01-08,1775.29,USD,synthetic_demo
+Creator Laptop 16,2026-02-07,1961.73,USD,synthetic_demo
+Creator Laptop 16,2026-03-09,1933.58,USD,synthetic_demo
+Creator Laptop 16,2026-04-08,1849.32,USD,synthetic_demo
+Creator Laptop 16,2026-05-08,1817.56,USD,synthetic_demo
+Creator Laptop 16,2026-06-07,2007.72,USD,synthetic_demo
+Creator Laptop 16,2026-07-07,1885.4,USD,synthetic_demo
+Creator Laptop 16,2026-08-06,1803.93,USD,synthetic_demo
+Creator Laptop 16,2026-09-05,1877.98,USD,synthetic_demo
+Creator Laptop 16,2026-10-05,2023.94,USD,synthetic_demo
+Ergonomic Chair,2025-11-09,652.48,USD,synthetic_demo
+Ergonomic Chair,2025-12-09,649.77,USD,synthetic_demo
+Ergonomic Chair,2026-01-08,625.56,USD,synthetic_demo
+Ergonomic Chair,2026-02-07,647.15,USD,synthetic_demo
+Ergonomic Chair,2026-03-09,660.6,USD,synthetic_demo
+Ergonomic Chair,2026-04-08,623.54,USD,synthetic_demo
+Ergonomic Chair,2026-05-08,654.54,USD,synthetic_demo
+Ergonomic Chair,2026-06-07,682.12,USD,synthetic_demo
+Ergonomic Chair,2026-07-07,644.45,USD,synthetic_demo
+Ergonomic Chair,2026-08-06,644.86,USD,synthetic_demo
+Ergonomic Chair,2026-09-05,662.92,USD,synthetic_demo
+Ergonomic Chair,2026-10-05,672.27,USD,synthetic_demo
+Espresso Grinder,2025-11-09,211.82,USD,synthetic_demo
+Espresso Grinder,2025-12-09,194.88,USD,synthetic_demo
+Espresso Grinder,2026-01-08,190.76,USD,synthetic_demo
+Espresso Grinder,2026-02-07,202.82,USD,synthetic_demo
+Espresso Grinder,2026-03-09,209.07,USD,synthetic_demo
+Espresso Grinder,2026-04-08,188.06,USD,synthetic_demo
+Espresso Grinder,2026-05-08,189.69,USD,synthetic_demo
+Espresso Grinder,2026-06-07,198.63,USD,synthetic_demo
+Espresso Grinder,2026-07-07,206.0,USD,synthetic_demo
+Espresso Grinder,2026-08-06,193.6,USD,synthetic_demo
+Espresso Grinder,2026-09-05,190.78,USD,synthetic_demo
+Espresso Grinder,2026-10-05,206.17,USD,synthetic_demo
+Everyday Smartwatch,2025-11-09,265.94,USD,synthetic_demo
+Everyday Smartwatch,2025-12-09,240.98,USD,synthetic_demo
+Everyday Smartwatch,2026-01-08,242.92,USD,synthetic_demo
+Everyday Smartwatch,2026-02-07,246.87,USD,synthetic_demo
+Everyday Smartwatch,2026-03-09,252.32,USD,synthetic_demo
+Everyday Smartwatch,2026-04-08,247.6,USD,synthetic_demo
+Everyday Smartwatch,2026-05-08,237.65,USD,synthetic_demo
+Everyday Smartwatch,2026-06-07,264.28,USD,synthetic_demo
+Everyday Smartwatch,2026-07-07,257.07,USD,synthetic_demo
+Everyday Smartwatch,2026-08-06,237.27,USD,synthetic_demo
+Everyday Smartwatch,2026-09-05,241.27,USD,synthetic_demo
+Everyday Smartwatch,2026-10-05,254.04,USD,synthetic_demo
+Fitness Tracker,2025-11-09,129.21,USD,synthetic_demo
+Fitness Tracker,2025-12-09,128.29,USD,synthetic_demo
+Fitness Tracker,2026-01-08,125.1,USD,synthetic_demo
+Fitness Tracker,2026-02-07,131.51,USD,synthetic_demo
+Fitness Tracker,2026-03-09,130.7,USD,synthetic_demo
+Fitness Tracker,2026-04-08,126.82,USD,synthetic_demo
+Fitness Tracker,2026-05-08,129.33,USD,synthetic_demo
+Fitness Tracker,2026-06-07,134.85,USD,synthetic_demo
+Fitness Tracker,2026-07-07,129.89,USD,synthetic_demo
+Fitness Tracker,2026-08-06,121.35,USD,synthetic_demo
+Fitness Tracker,2026-09-05,131.73,USD,synthetic_demo
+Fitness Tracker,2026-10-05,129.35,USD,synthetic_demo
+Home Espresso Maker,2025-11-09,566.41,USD,synthetic_demo
+Home Espresso Maker,2025-12-09,552.93,USD,synthetic_demo
+Home Espresso Maker,2026-01-08,519.5,USD,synthetic_demo
+Home Espresso Maker,2026-02-07,574.88,USD,synthetic_demo
+Home Espresso Maker,2026-03-09,553.44,USD,synthetic_demo
+Home Espresso Maker,2026-04-08,532.57,USD,synthetic_demo
+Home Espresso Maker,2026-05-08,519.09,USD,synthetic_demo
+Home Espresso Maker,2026-06-07,570.09,USD,synthetic_demo
+Home Espresso Maker,2026-07-07,565.98,USD,synthetic_demo
+Home Espresso Maker,2026-08-06,515.14,USD,synthetic_demo
+Home Espresso Maker,2026-09-05,531.3,USD,synthetic_demo
+Home Espresso Maker,2026-10-05,564.19,USD,synthetic_demo
+Mechanical Keyboard,2025-11-09,141.87,USD,synthetic_demo
+Mechanical Keyboard,2025-12-09,141.2,USD,synthetic_demo
+Mechanical Keyboard,2026-01-08,130.11,USD,synthetic_demo
+Mechanical Keyboard,2026-02-07,138.32,USD,synthetic_demo
+Mechanical Keyboard,2026-03-09,141.86,USD,synthetic_demo
+Mechanical Keyboard,2026-04-08,140.59,USD,synthetic_demo
+Mechanical Keyboard,2026-05-08,136.37,USD,synthetic_demo
+Mechanical Keyboard,2026-06-07,141.76,USD,synthetic_demo
+Mechanical Keyboard,2026-07-07,137.87,USD,synthetic_demo
+Mechanical Keyboard,2026-08-06,136.32,USD,synthetic_demo
+Mechanical Keyboard,2026-09-05,133.55,USD,synthetic_demo
+Mechanical Keyboard,2026-10-05,145.38,USD,synthetic_demo
+Mirrorless Camera,2025-11-09,1165.71,USD,synthetic_demo
+Mirrorless Camera,2025-12-09,1078.75,USD,synthetic_demo
+Mirrorless Camera,2026-01-08,1096.35,USD,synthetic_demo
+Mirrorless Camera,2026-02-07,1095.53,USD,synthetic_demo
+Mirrorless Camera,2026-03-09,1159.54,USD,synthetic_demo
+Mirrorless Camera,2026-04-08,1096.33,USD,synthetic_demo
+Mirrorless Camera,2026-05-08,1062.67,USD,synthetic_demo
+Mirrorless Camera,2026-06-07,1102.5,USD,synthetic_demo
+Mirrorless Camera,2026-07-07,1084.51,USD,synthetic_demo
+Mirrorless Camera,2026-08-06,1055.67,USD,synthetic_demo
+Mirrorless Camera,2026-09-05,1094.72,USD,synthetic_demo
+Mirrorless Camera,2026-10-05,1107.27,USD,synthetic_demo
+Noise Cancel Earbuds,2025-11-09,191.09,USD,synthetic_demo
+Noise Cancel Earbuds,2025-12-09,183.28,USD,synthetic_demo
+Noise Cancel Earbuds,2026-01-08,176.21,USD,synthetic_demo
+Noise Cancel Earbuds,2026-02-07,184.38,USD,synthetic_demo
+Noise Cancel Earbuds,2026-03-09,190.0,USD,synthetic_demo
+Noise Cancel Earbuds,2026-04-08,176.14,USD,synthetic_demo
+Noise Cancel Earbuds,2026-05-08,179.2,USD,synthetic_demo
+Noise Cancel Earbuds,2026-06-07,188.05,USD,synthetic_demo
+Noise Cancel Earbuds,2026-07-07,177.89,USD,synthetic_demo
+Noise Cancel Earbuds,2026-08-06,179.18,USD,synthetic_demo
+Noise Cancel Earbuds,2026-09-05,175.89,USD,synthetic_demo
+Noise Cancel Earbuds,2026-10-05,186.52,USD,synthetic_demo
+Portable Monitor,2025-11-09,307.99,USD,synthetic_demo
+Portable Monitor,2025-12-09,288.58,USD,synthetic_demo
+Portable Monitor,2026-01-08,283.96,USD,synthetic_demo
+Portable Monitor,2026-02-07,295.22,USD,synthetic_demo
+Portable Monitor,2026-03-09,303.75,USD,synthetic_demo
+Portable Monitor,2026-04-08,281.44,USD,synthetic_demo
+Portable Monitor,2026-05-08,289.75,USD,synthetic_demo
+Portable Monitor,2026-06-07,287.89,USD,synthetic_demo
+Portable Monitor,2026-07-07,289.45,USD,synthetic_demo
+Portable Monitor,2026-08-06,276.05,USD,synthetic_demo
+Portable Monitor,2026-09-05,295.17,USD,synthetic_demo
+Portable Monitor,2026-10-05,294.32,USD,synthetic_demo
+QuietComfort Headphones,2025-11-09,332.82,USD,synthetic_demo
+QuietComfort Headphones,2025-12-09,332.14,USD,synthetic_demo
+QuietComfort Headphones,2026-01-08,311.22,USD,synthetic_demo
+QuietComfort Headphones,2026-02-07,342.16,USD,synthetic_demo
+QuietComfort Headphones,2026-03-09,331.57,USD,synthetic_demo
+QuietComfort Headphones,2026-04-08,315.25,USD,synthetic_demo
+QuietComfort Headphones,2026-05-08,327.41,USD,synthetic_demo
+QuietComfort Headphones,2026-06-07,344.74,USD,synthetic_demo
+QuietComfort Headphones,2026-07-07,327.18,USD,synthetic_demo
+QuietComfort Headphones,2026-08-06,313.7,USD,synthetic_demo
+QuietComfort Headphones,2026-09-05,330.2,USD,synthetic_demo
+QuietComfort Headphones,2026-10-05,334.07,USD,synthetic_demo
+Robot Vacuum,2025-11-09,422.41,USD,synthetic_demo
+Robot Vacuum,2025-12-09,393.53,USD,synthetic_demo
+Robot Vacuum,2026-01-08,393.33,USD,synthetic_demo
+Robot Vacuum,2026-02-07,418.02,USD,synthetic_demo
+Robot Vacuum,2026-03-09,404.44,USD,synthetic_demo
+Robot Vacuum,2026-04-08,379.55,USD,synthetic_demo
+Robot Vacuum,2026-05-08,390.31,USD,synthetic_demo
+Robot Vacuum,2026-06-07,410.64,USD,synthetic_demo
+Robot Vacuum,2026-07-07,409.19,USD,synthetic_demo
+Robot Vacuum,2026-08-06,378.38,USD,synthetic_demo
+Robot Vacuum,2026-09-05,399.51,USD,synthetic_demo
+Robot Vacuum,2026-10-05,406.91,USD,synthetic_demo
+Smart Speaker Pair,2025-11-09,219.3,USD,synthetic_demo
+Smart Speaker Pair,2025-12-09,213.07,USD,synthetic_demo
+Smart Speaker Pair,2026-01-08,212.69,USD,synthetic_demo
+Smart Speaker Pair,2026-02-07,228.8,USD,synthetic_demo
+Smart Speaker Pair,2026-03-09,224.58,USD,synthetic_demo
+Smart Speaker Pair,2026-04-08,210.62,USD,synthetic_demo
+Smart Speaker Pair,2026-05-08,209.34,USD,synthetic_demo
+Smart Speaker Pair,2026-06-07,224.07,USD,synthetic_demo
+Smart Speaker Pair,2026-07-07,220.33,USD,synthetic_demo
+Smart Speaker Pair,2026-08-06,218.86,USD,synthetic_demo
+Smart Speaker Pair,2026-09-05,214.58,USD,synthetic_demo
+Smart Speaker Pair,2026-10-05,220.06,USD,synthetic_demo
+Standing Desk,2025-11-09,518.56,USD,synthetic_demo
+Standing Desk,2025-12-09,488.04,USD,synthetic_demo
+Standing Desk,2026-01-08,475.28,USD,synthetic_demo
+Standing Desk,2026-02-07,513.83,USD,synthetic_demo
+Standing Desk,2026-03-09,523.95,USD,synthetic_demo
+Standing Desk,2026-04-08,492.57,USD,synthetic_demo
+Standing Desk,2026-05-08,495.97,USD,synthetic_demo
+Standing Desk,2026-06-07,524.96,USD,synthetic_demo
+Standing Desk,2026-07-07,500.75,USD,synthetic_demo
+Standing Desk,2026-08-06,474.22,USD,synthetic_demo
+Standing Desk,2026-09-05,480.62,USD,synthetic_demo
+Standing Desk,2026-10-05,520.51,USD,synthetic_demo
+Studio Pro Laptop,2025-11-09,1550.61,USD,synthetic_demo
+Studio Pro Laptop,2025-12-09,1487.56,USD,synthetic_demo
+Studio Pro Laptop,2026-01-08,1458.28,USD,synthetic_demo
+Studio Pro Laptop,2026-02-07,1493.23,USD,synthetic_demo
+Studio Pro Laptop,2026-03-09,1497.71,USD,synthetic_demo
+Studio Pro Laptop,2026-04-08,1510.7,USD,synthetic_demo
+Studio Pro Laptop,2026-05-08,1426.82,USD,synthetic_demo
+Studio Pro Laptop,2026-06-07,1578.44,USD,synthetic_demo
+Studio Pro Laptop,2026-07-07,1576.2,USD,synthetic_demo
+Studio Pro Laptop,2026-08-06,1493.14,USD,synthetic_demo
+Studio Pro Laptop,2026-09-05,1473.24,USD,synthetic_demo
+Studio Pro Laptop,2026-10-05,1504.96,USD,synthetic_demo
+Tablet 11,2025-11-09,603.76,USD,synthetic_demo
+Tablet 11,2025-12-09,596.04,USD,synthetic_demo
+Tablet 11,2026-01-08,580.2,USD,synthetic_demo
+Tablet 11,2026-02-07,608.57,USD,synthetic_demo
+Tablet 11,2026-03-09,622.31,USD,synthetic_demo
+Tablet 11,2026-04-08,568.14,USD,synthetic_demo
+Tablet 11,2026-05-08,566.41,USD,synthetic_demo
+Tablet 11,2026-06-07,628.0,USD,synthetic_demo
+Tablet 11,2026-07-07,616.18,USD,synthetic_demo
+Tablet 11,2026-08-06,562.1,USD,synthetic_demo
+Tablet 11,2026-09-05,606.34,USD,synthetic_demo
+Tablet 11,2026-10-05,638.64,USD,synthetic_demo
