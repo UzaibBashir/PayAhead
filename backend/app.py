@@ -5,7 +5,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from werkzeug.security import generate_password_hash,check_password_hash
-app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')\napp.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:5173')); db=SQLAlchemy(app); jwt=JWTManager(app)
+from dotenv import load_dotenv
+load_dotenv()
+app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')
+app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:5173')); db=SQLAlchemy(app); jwt=JWTManager(app)
 class User(db.Model):
  id=db.Column(db.Integer,primary_key=True); email=db.Column(db.String(255),unique=True,nullable=False); password=db.Column(db.String(255),nullable=False)
 class Profile(db.Model):
@@ -127,7 +130,3 @@ with app.app_context():
   for p in PRODUCTS:db.session.add(Product(**p))
   db.session.commit()
 if __name__=='__main__':app.run(port=int(os.getenv('PORT','5000')),debug=os.getenv('FLASK_DEBUG')=='1')
-
-
-
-
