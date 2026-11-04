@@ -8,7 +8,7 @@ flowchart LR
  API --> DB[(SQLite / SQLAlchemy)]
  API --> CALC[Financial decision rules]
  CALC --> AG[Five specialist functions]
- API --> ML[scikit-learn models]
+ API --> ML[scikit-learn default / optional PyTorch]
  API --> PP[PayPal Sandbox Orders v2]
 ```
 

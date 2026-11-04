@@ -1,6 +1,6 @@
 import os,csv,io,ssl
 
-from datetime import date,datetime,timedelta
+from datetime import date,datetime,timedelta,timezone
 
 from flask import Flask,jsonify,request
 
@@ -17,10 +17,11 @@ from dotenv import load_dotenv
 from functools import lru_cache
 
 load_dotenv()
+def utc_now(): return datetime.now(timezone.utc)
 
 app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')
 
-app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:5173')); db=SQLAlchemy(app); jwt=JWTManager(app)
+app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:8501')); db=SQLAlchemy(app); jwt=JWTManager(app)
 
 class User(db.Model):
 
@@ -45,14 +46,14 @@ class Schedule(db.Model):
  id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); target=db.Column(db.Float); due=db.Column(db.Date); status=db.Column(db.String(20),default='watching')
 
 class ScheduleAlert(db.Model):
- id=db.Column(db.Integer,primary_key=True); schedule_id=db.Column(db.Integer,db.ForeignKey('schedule.id')); user_id=db.Column(db.Integer); message=db.Column(db.String(300)); created=db.Column(db.DateTime,default=datetime.utcnow); read=db.Column(db.Boolean,default=False)
+ id=db.Column(db.Integer,primary_key=True); schedule_id=db.Column(db.Integer,db.ForeignKey('schedule.id')); user_id=db.Column(db.Integer); message=db.Column(db.String(300)); created=db.Column(db.DateTime,default=utc_now); read=db.Column(db.Boolean,default=False)
 class Preference(db.Model):
  id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer,index=True); key=db.Column(db.String(60)); value=db.Column(db.String(300))
 class AgentActivity(db.Model):
- id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer,index=True); product=db.Column(db.String(160)); role=db.Column(db.String(60)); finding=db.Column(db.String(500)); created=db.Column(db.DateTime,default=datetime.utcnow)
+ id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer,index=True); product=db.Column(db.String(160)); role=db.Column(db.String(60)); finding=db.Column(db.String(500)); created=db.Column(db.DateTime,default=utc_now)
 class Payment(db.Model):
 
- id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); amount=db.Column(db.Float); currency=db.Column(db.String(3)); paypal_order=db.Column(db.String(100),unique=True); status=db.Column(db.String(30),default='created'); created=db.Column(db.DateTime,default=datetime.utcnow)
+ id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); amount=db.Column(db.Float); currency=db.Column(db.String(3)); paypal_order=db.Column(db.String(100),unique=True); status=db.Column(db.String(30),default='created'); created=db.Column(db.DateTime,default=utc_now)
 
 DEMOS={
 
@@ -96,6 +97,11 @@ def expense_model():
   return joblib.load(model_path) if os.path.exists(model_path) else None
  except Exception:return None
 def categorize(description):
+ if os.getenv('EXPENSE_MODEL','sklearn').lower()=='pytorch':
+  try:
+   from backend.ml.deep_expense import predict
+   return str(predict(description))
+  except Exception:pass
  model=expense_model()
  if model is not None:
   try:return str(model.predict([description])[0])
