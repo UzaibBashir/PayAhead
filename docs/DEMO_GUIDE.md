@@ -1,8 +1,8 @@
 # Judge demo
 
-1. Start the API and frontend using README steps. Open `http://localhost:5173`; sample data is labeled simulated.
-2. Review cash-flow cards and recent activity.
-3. Choose Studio Pro Laptop in Explore products for affordability and buy-now/wait scenarios.
-4. Choose QuietComfort Headphones for a smaller decision. Historic prices are unavailable and the app says so.
-5. Register, then update the personal profile through the API or import CSV with date,description,amount columns.
-6. Configure Sandbox credentials for a real PayPal Sandbox order. Without credentials checkout is unavailable; no payment success is faked.
+1. Start Flask and Streamlit as shown in README. The dashboard labels sample values as simulated.
+2. Review available monthly cash and update a profile after registration.
+3. Choose Studio Pro Laptop under Explore products and analyze the buy/wait scenarios.
+4. Try QuietComfort Headphones for a smaller purchase. Price history is not available; no trend is claimed.
+5. Register and import CSV with `date`, `amount`, and optional `description` columns.
+6. Configure Sandbox credentials to prepare a genuine PayPal order. Streamlit links to PayPal approval; the return/capture step must currently be completed through the documented API.
