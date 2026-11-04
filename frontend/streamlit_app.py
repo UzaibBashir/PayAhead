@@ -5,9 +5,27 @@ import pandas as pd
 
 API=os.getenv('PAYAHEAD_API_URL','http://localhost:5000/api')
 st.set_page_config(page_title='PayAhead',page_icon='🌿',layout='wide',initial_sidebar_state='expanded')
-st.markdown('''<style>
+theme=st.sidebar.radio('Appearance',['Light','Dark'],horizontal=True,key='appearance')
+dark=theme=='Dark'
+colors={'bg':'#10141d','surface':'#181f2b','surface2':'#202938','text':'#edf2f7','muted':'#9aa8ba','border':'#2a3545','accent':'#61d8c0','accent_soft':'#173d3a','input':'#141b26'} if dark else {'bg':'#f4f7fa','surface':'#ffffff','surface2':'#f8fafb','text':'#243143','muted':'#7d8a9a','border':'#e4eaf0','accent':'#168c79','accent_soft':'#e4f6f1','input':'#ffffff'}
+st.markdown(f'''<style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
-html,body,[class*="css"]{font-family:'DM Sans',sans-serif} h1,h2,h3{font-family:Manrope,sans-serif!important;letter-spacing:-.03em} .stApp{background:#f7f8fb} [data-testid="stSidebar"]{background:#fff;border-right:1px solid #edf0f4} .block-container{padding-top:2rem;max-width:1240px} div[data-testid="stMetric"]{background:white;border:1px solid #edf0f4;padding:18px;border-radius:14px} .demo{background:#fff8e8;padding:12px 16px;border:1px solid #f2e8cf;border-radius:10px;color:#766744}
+:root{{--pa-bg:{colors['bg']};--pa-surface:{colors['surface']};--pa-surface2:{colors['surface2']};--pa-text:{colors['text']};--pa-muted:{colors['muted']};--pa-border:{colors['border']};--pa-accent:{colors['accent']};--pa-accent-soft:{colors['accent_soft']};--pa-input:{colors['input']}}}
+html,body,[class*="css"]{{font-family:'DM Sans',sans-serif;color:var(--pa-text)}} .stApp{{background:var(--pa-bg);color:var(--pa-text)}}
+h1,h2,h3{{font-family:Manrope,sans-serif!important;letter-spacing:-.035em;color:var(--pa-text)}} h1{{font-weight:800!important}}
+p,[data-testid="stCaptionContainer"]{{color:var(--pa-muted)}}
+[data-testid="stSidebar"]{{background:var(--pa-surface);border-right:1px solid var(--pa-border)}} [data-testid="stSidebar"] h2{{color:var(--pa-text);font-weight:800}}
+.block-container{{padding-top:2.1rem;padding-bottom:3rem;max-width:1280px}}
+div[data-testid="stMetric"]{{background:var(--pa-surface);border:1px solid var(--pa-border);padding:18px 20px;border-radius:15px;box-shadow:0 6px 24px #08111b12}}
+div[data-testid="stMetricLabel"] p{{color:var(--pa-muted);font-size:.82rem;font-weight:600}} div[data-testid="stMetricValue"]{{color:var(--pa-text);font-family:Manrope,sans-serif;font-weight:750}}
+[data-testid="stVerticalBlockBorderWrapper"]{{background:var(--pa-surface);border-color:var(--pa-border);border-radius:15px;padding:8px}}
+.stTextInput input,.stNumberInput input,.stSelectbox [data-baseweb="select"]>div{{background:var(--pa-input);color:var(--pa-text);border-color:var(--pa-border);border-radius:9px}}
+.stButton>button,.stLinkButton>a,.stFormSubmitButton>button{{border-radius:9px;border:1px solid var(--pa-border);font-weight:650;transition:all .15s ease}}
+.stButton>button[kind="primary"]{{background:var(--pa-accent);border-color:var(--pa-accent);color:#082820}}
+.stButton>button:hover,.stLinkButton>a:hover{{border-color:var(--pa-accent);color:var(--pa-accent);transform:translateY(-1px)}}
+[data-testid="stDataFrame"]{{border:1px solid var(--pa-border);border-radius:12px;overflow:hidden}}
+.demo{{background:{'#26301f' if dark else '#fff8e8'};padding:13px 16px;border:1px solid {'#4b553c' if dark else '#f2e8cf'};border-radius:11px;color:{'#d7d1a4' if dark else '#766744'};margin:.7rem 0 1.4rem}}
+hr{{border-color:var(--pa-border)}}
 </style>''',unsafe_allow_html=True)
 if 'token' not in st.session_state: st.session_state.token=''
 def headers(): return {'Authorization':f"Bearer {st.session_state.token}"} if st.session_state.token else {}
@@ -22,7 +40,7 @@ def api_post(path,data=None,files=None):
 with st.sidebar:
  st.markdown('## 🌿 payahead')
  st.caption('THINK BEFORE YOU SPEND')
- page=st.radio('Workspace',['Overview','Purchase advisor','Explore products','Transactions','My schedule'],label_visibility='collapsed')
+ page=st.radio('Workspace',['Overview','Purchase advisor','Explore products','Transactions','My schedule'],label_visibility='collapsed',key='page_selector')
  st.divider()
  if st.session_state.token:
   st.success('Personal workspace');
@@ -42,6 +60,7 @@ if not dashboard:
  st.title('PayAhead'); st.error('The API is unavailable. Start it with `python backend/app.py` and refresh.'); st.stop()
 profile=dashboard['profile']; metrics=dashboard['metrics']; currency=metrics.get('currency','USD')
 def fmt(n): return f"{currency} {n:,.0f}"
+st.markdown(f"<div style='color:{colors['accent']};font-size:.72rem;font-weight:700;letter-spacing:.13em;margin-bottom:.25rem'>PAYAHEAD / {page.upper()}</div>",unsafe_allow_html=True)
 st.title({'Overview':'Your money, in focus.','Purchase advisor':'Make a confident choice.','Explore products':'A better buy starts here.','Transactions':'Every dollar, accounted for.','My schedule':'Your plan, at your pace.'}[page])
 st.caption('A little clarity today makes the bigger decisions easier.')
 if dashboard.get('simulated'): st.markdown('<div class="demo">✦ &nbsp; <b>Simulated demo data</b> · Sample values are fictional. Sign in to create a personal profile.</div>',unsafe_allow_html=True)
@@ -71,7 +90,7 @@ if page=='Overview':
     except requests.RequestException: st.error('API unavailable.')
 elif page=='Explore products':
  query=st.text_input('Search products',placeholder='Laptop, audio, home…'); result=api_get('/products',params={'q':query or ''}) or {'products':[]}; products=result['products']
- for row in st.columns(3): pass
+ 
  for start in range(0,len(products),3):
   cols=st.columns(3)
   for col,p in zip(cols,products[start:start+3]):
@@ -79,7 +98,7 @@ elif page=='Explore products':
     with st.container(border=True):
      if p.get('image'): st.image(p['image'],use_container_width=True)
      st.caption(p['category']); st.subheader(p['name']); st.write(p.get('description','')); st.markdown(f"**{p['currency']} {p['price']:,.0f}** · ★ {p['rating']}")
-     if st.button('Can I afford it?',key='p_'+p['name'],use_container_width=True): st.session_state['chosen_product']=p; st.session_state['page']='Purchase advisor'; st.rerun()
+     if st.button('Can I afford it?',key='p_'+p['name'],use_container_width=True): st.session_state['chosen_product']=p; st.session_state['page_selector']='Purchase advisor'; st.rerun()
 elif page=='Purchase advisor':
  result=api_get('/products') or {'products':[]}; products=result['products']; labels=[f"{p['name']} · {p['currency']} {p['price']:,.0f}" for p in products]
  chosen=st.selectbox('Choose a product',labels) if labels else None
