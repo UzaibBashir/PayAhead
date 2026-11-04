@@ -33,6 +33,14 @@ def api_get(path,**kw):
  try:
   r=requests.get(API+path,headers=headers(),timeout=4,**kw); return r.json() if r.ok else None
  except requests.RequestException:return None
+def api_put(path,data):
+ try:
+  r=requests.put(API+path,headers={**headers(),'Content-Type':'application/json'},json=data,timeout=10);return r.status_code,r.json()
+ except requests.RequestException:return 0,{'error':'Could not reach the PayAhead API.'}
+def api_delete(path):
+ try:
+  r=requests.delete(API+path,headers=headers(),timeout=10);return r.status_code,r.json()
+ except requests.RequestException:return 0,{'error':'Could not reach the PayAhead API.'}
 def api_post(path,data=None,files=None):
  try:
   r=requests.post(API+path,headers=headers(),json=data,files=files,timeout=20); return r.status_code,r.json()
@@ -40,7 +48,7 @@ def api_post(path,data=None,files=None):
 with st.sidebar:
  st.markdown('## 🌿 payahead')
  st.caption('THINK BEFORE YOU SPEND')
- page=st.radio('Workspace',['Overview','Purchase advisor','Explore products','Transactions','My schedule'],label_visibility='collapsed',key='page_selector')
+ page=st.radio('Workspace',['Overview','Purchase advisor','Explore products','Transactions','My schedule','Preferences'],label_visibility='collapsed',key='page_selector')
  st.divider()
  if st.session_state.token:
   st.success('Personal workspace');
@@ -76,7 +84,7 @@ if not dashboard:
 profile=dashboard['profile']; metrics=dashboard['metrics']; currency=metrics.get('currency','USD')
 def fmt(n): return f"{currency} {n:,.0f}"
 st.markdown(f"<div style='color:{colors['accent']};font-size:.72rem;font-weight:700;letter-spacing:.13em;margin-bottom:.25rem'>PAYAHEAD / {page.upper()}</div>",unsafe_allow_html=True)
-st.title({'Overview':'Your money, in focus.','Purchase advisor':'Make a confident choice.','Explore products':'A better buy starts here.','Transactions':'Every dollar, accounted for.','My schedule':'Your plan, at your pace.'}[page])
+st.title({'Overview':'Your money, in focus.','Purchase advisor':'Make a confident choice.','Explore products':'A better buy starts here.','Transactions':'Every dollar, accounted for.','My schedule':'Your plan, at your pace.','Preferences':'Make it personal.'}[page])
 st.caption('A little clarity today makes the bigger decisions easier.')
 if dashboard.get('simulated'): st.markdown('<div class="demo">✦ &nbsp; <b>Simulated demo data</b> · Sample values are fictional. Sign in to create a personal profile.</div>',unsafe_allow_html=True)
 if page=='Overview':
@@ -97,9 +105,10 @@ if page=='Overview':
    variable=st.number_input('Variable expenses',min_value=0.0,value=float(profile['variable']),step=50.0)
    savings=st.number_input('Savings',min_value=0.0,value=float(profile['savings']),step=100.0)
    debt=st.number_input('Debt payments',min_value=0.0,value=float(profile['debt']),step=50.0)
+   currency_choice=st.selectbox('Currency',['USD','EUR','GBP','CAD','AUD','JPY','INR'],index=['USD','EUR','GBP','CAD','AUD','JPY','INR'].index(profile.get('currency','USD')) if profile.get('currency','USD') in ['USD','EUR','GBP','CAD','AUD','JPY','INR'] else 0)
    if st.form_submit_button('Save profile',use_container_width=True):
     try:
-     r=requests.put(API+'/finances/profile',headers={**headers(),'Content-Type':'application/json'},json={'income':income,'fixed':fixed,'variable':variable,'savings':savings,'debt':debt},timeout=10)
+     r=requests.put(API+'/finances/profile',headers={**headers(),'Content-Type':'application/json'},json={'income':income,'fixed':fixed,'variable':variable,'savings':savings,'debt':debt,'currency':currency_choice},timeout=10)
      if r.ok: st.success('Profile saved.'); st.rerun()
      else: st.error(r.json().get('error','Sign in to save a profile.'))
     except requests.RequestException: st.error('API unavailable.')
@@ -115,6 +124,29 @@ elif page=='Explore products':
      st.caption(p['category']); st.subheader(p['name']); st.write(p.get('description','')); st.markdown(f"**{p['currency']} {p['price']:,.0f}** · ★ {p['rating']}")
      if st.button('Can I afford it?',key='p_'+p['name'],use_container_width=True): st.session_state['chosen_product']=p; st.session_state['page_selector']='Purchase advisor'; st.rerun()
      if st.button('Price history',key='h_'+p['name'],use_container_width=True): st.session_state['price_lookup']=p['name']
+ with st.expander('Preview a product page'):
+  page_url=st.text_input('Public product page URL',key='product_preview_url')
+  if st.button('Read product details',key='preview_product'):
+   status,preview=api_post('/products/extract',{'url':page_url})
+   if status==200:
+    st.session_state['product_preview']=preview; st.info(preview.get('source','Metadata preview; confirm every value.'))
+   else: st.error(preview.get('error','Could not preview URL.'))
+  preview=st.session_state.get('product_preview')
+  if preview:
+   st.write({'Name':preview['name'],'Suggested price':preview['price'],'Currency':preview['currency'],'Source':preview['source']})
+   st.caption('Page metadata may be inaccurate. Confirm the product details and enter the price you verified before saving.')
+   reviewed_price=st.number_input('Confirmed price',min_value=0.0,value=float(preview['price'] or 0),step=10.0,key='preview_confirmed_price')
+   if st.button('Save reviewed product',key='save_preview'):
+    if reviewed_price<=0: st.error('Enter a confirmed positive price before saving.')
+    else:
+     status,saved=api_post('/products',{'name':preview['name'],'category':'Other','price':reviewed_price,'currency':preview['currency'],'url':preview['url'],'description':'Page metadata reviewed by user; not independently verified.'})
+     st.success('Saved. Verify the price before checkout.') if status==201 else st.error(saved.get('error','Could not save product.'))
+ with st.expander('Add a product manually'):
+  with st.form('add_product'):
+   new_name=st.text_input('Product name'); new_category=st.text_input('Category','Other'); new_price=st.number_input('Listed price',min_value=0.0,step=10.0); new_currency=st.selectbox('Currency',['USD','EUR','GBP','CAD','AUD','JPY','INR']); new_url=st.text_input('Product page URL (saved for reference)'); new_description=st.text_area('Notes')
+   if st.form_submit_button('Save product'):
+    status,created=api_post('/products',{'name':new_name,'category':new_category,'price':new_price,'currency':new_currency,'url':new_url,'description':new_description})
+    st.success('Product saved. Its price is user-entered and not verified.') if status==201 else st.error(created.get('error','Could not save product.'))
  if st.session_state.get('price_lookup'):
   history=api_get('/price-history',params={'product':st.session_state['price_lookup']})
   if history and history.get('history'):
@@ -135,7 +167,11 @@ elif page=='Purchase advisor':
    for col,scenario in zip(c,a['scenarios']): col.metric(scenario['label'],fmt(scenario['projectedCash']),scenario['result'])
    st.subheader('Decision team')
    for agent in a['agents']: st.write(f"✅ **{agent['name']}** — {agent['finding']}")
-   st.caption('Price history is unavailable in the demo; no trend is inferred. A payment always needs your approval.')
+   if st.session_state.token:
+    activity=api_get('/agents/activity')
+    if activity and activity.get('activity'):
+     with st.expander('Saved decision activity'): st.dataframe(pd.DataFrame(activity['activity']),use_container_width=True,hide_index=True)
+   st.caption('Demo price trends use generated series. They are not retailer quotes. A payment always needs your approval.')
    if st.button('Continue to PayPal'):
     if not st.session_state.token: st.warning('Sign in before preparing checkout.')
     else:
@@ -155,6 +191,21 @@ elif page=='Transactions':
   st.subheader('Unusual amounts to review')
   st.caption(anomalies['note'])
   if anomalies.get('anomalies'): st.dataframe(pd.DataFrame(anomalies['anomalies']),use_container_width=True,hide_index=True)
+elif page=='Preferences':
+ st.subheader('Your saved preferences')
+ if not st.session_state.token: st.info('Sign in to manage saved preferences.')
+ else:
+  prefs=api_get('/preferences') or {'preferences':{}}; existing=prefs.get('preferences',{})
+  with st.form('preferences'):
+   category=st.text_input('Preferred category',existing.get('category',''))
+   budget=st.text_input('Purchase budget',existing.get('budget',''))
+   preferred_currency=st.text_input('Preferred currency',existing.get('currency','USD'))
+   brand=st.text_input('Brand preferences',existing.get('brand',''))
+   if st.form_submit_button('Save preferences',type='primary'):
+    status,saved=api_put('/preferences',{'category':category,'budget':budget,'currency':preferred_currency,'brand':brand})
+    st.success('Preferences saved.') if status==200 else st.error(saved.get('error','Could not save preferences.'))
+  if st.button('Delete saved preferences'):
+   status,deleted=api_delete('/preferences'); st.success('Preferences deleted.') if status==200 else st.error(deleted.get('error','Could not delete preferences.'))
 else:
  st.subheader('Purchase watches')
  if st.session_state.token and st.button('Check my watches now'):

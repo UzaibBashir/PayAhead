@@ -1,6 +1,6 @@
 # AI and models
 
-The live MVP uses deterministic finance calculations and a structured five-role advisory workflow. It does not call an LLM and never invents price trends. Product price endpoints use explicitly labeled generated demo series; their trend estimate is educational only and does not describe retailer prices.
+The live MVP uses deterministic finance calculations and a structured five-role advisory workflow. It does not call an LLM and never invents price trends. Product price endpoints use explicitly labeled generated demo series; their trend estimate is educational only and does not describe retailer prices. The application selects classical models for small tabular data; it does not ship a deep neural network because no representative real dataset is available.
 
 An optional scikit-learn expense classifier can be trained with `python backend/scripts/train_models.py`. It generates synthetic merchant descriptions, uses a stratified held-out 20% split and prints precision/recall/F1. Metrics apply only to synthetic data and do not predict performance on real bank statements. When its saved model exists, CSV import uses the classifier; a conservative keyword fallback is used otherwise. A user-level Isolation Forest flags unusual expense amounts once at least 30 imported expenses exist; flags are review prompts, not fraud findings. No deep learning model is included.
 

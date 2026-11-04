@@ -1,6 +1,6 @@
 import sys,pathlib
 sys.path.insert(0,str(pathlib.Path(__file__).resolve().parents[1]))
-from app import app,metrics,Product
+from app import app,metrics,Product,Payment
 def test_metrics():
  m=metrics({'income':5000,'fixed':2000,'variable':1000,'debt':500,'savings':6000,'currency':'USD'}); assert m['disposableIncome']==1500 and m['totalExpenses']==3500 and m['savingsRate']==30
 def test_health_demo():
@@ -27,3 +27,46 @@ def test_synthetic_price_model_has_holdout_metrics():
 
 
 
+
+
+def test_watch_eval_creates_user_alert():
+ import secrets
+ c=app.test_client();reg=c.post('/api/auth/register',json={'email':secrets.token_hex(5)+'@example.test','password':'long-enough-pass'});h={'Authorization':'Bearer '+reg.json['token']}
+ saved=c.post('/api/schedule',headers=h,json={'product':'Studio Pro Laptop','target':0,'due':__import__('datetime').date.today().isoformat()});assert saved.status_code==201
+ checked=c.post('/api/schedule/evaluate',headers=h,json={}).json;assert checked['checked']==1 and checked['created']
+ assert len(c.get('/api/alerts',headers=h).json['alerts'])==1
+
+
+def test_paypal_order_capture_and_duplicate_are_verified(monkeypatch):
+ import secrets
+ from unittest.mock import patch
+ class Response:
+  def __init__(self,data):self.data=data
+  def json(self):return self.data
+  def raise_for_status(self):return None
+ c=app.test_client();reg=c.post('/api/auth/register',json={'email':secrets.token_hex(5)+'@example.test','password':'long-enough-pass'});h={'Authorization':'Bearer '+reg.json['token']}
+ monkeypatch.setenv('PAYPAL_CLIENT_ID','sandbox-id');monkeypatch.setenv('PAYPAL_CLIENT_SECRET','sandbox-secret')
+ order='ORDER-'+secrets.token_hex(6)
+ with patch('requests.post',side_effect=[Response({'access_token':'access'}),Response({'id':order,'links':[{'rel':'approve','href':'https://sandbox.example/approve'}]})]):
+  made=c.post('/api/payments/order',headers=h,json={'product':'QuietComfort Headphones','price':329,'currency':'USD'});assert made.status_code==200
+ payload={'status':'COMPLETED','purchase_units':[{'payments':{'captures':[{'status':'COMPLETED','amount':{'value':'329.00','currency_code':'USD'}}]}}]}
+ with patch('requests.post',side_effect=[Response({'access_token':'access'}),Response(payload)]) as call:
+  captured=c.post('/api/payments/capture',headers=h,json={'orderId':order});assert captured.json['verified'] is True;assert call.call_count==2
+ duplicate=c.post('/api/payments/capture',headers=h,json={'orderId':order});assert duplicate.json['duplicate'] is True
+
+
+
+
+def test_product_url_blocks_private_hosts():
+ from product_url import extract
+ import pytest
+ with pytest.raises(ValueError,match='private'):
+  extract('http://127.0.0.1/admin')
+
+def test_preferences_are_authenticated_and_user_scoped():
+ import secrets
+ c=app.test_client();reg=c.post('/api/auth/register',json={'email':secrets.token_hex(5)+'@example.test','password':'long-enough-pass'});headers={'Authorization':'Bearer '+reg.json['token']}
+ assert c.put('/api/preferences',headers=headers,json={'category':'Audio','budget':'500','other':'ignored'}).json['preferences']=={'category':'Audio','budget':'500'}
+ assert c.get('/api/preferences',headers=headers).json['preferences']['category']=='Audio'
+ assert c.delete('/api/preferences',headers=headers).json['deleted'] is True
+ assert c.get('/api/preferences',headers=headers).json['preferences']=={}

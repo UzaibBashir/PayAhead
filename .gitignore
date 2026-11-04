@@ -8,3 +8,4 @@ backend/app/ml/*.joblib
 frontend/node_modules/
 frontend/dist/
 .pytest_cache/
+frontend/.tmp/

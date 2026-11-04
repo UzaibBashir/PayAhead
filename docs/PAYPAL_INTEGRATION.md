@@ -1,5 +1,5 @@
 # PayPal Sandbox
 
-Set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com`, and `FRONTEND_URL`. The server obtains a token, creates Orders API v2 CAPTURE orders and returns the approval URL. Capture is restricted to the signed-in user's order and checks completed status, amount, and currency. Duplicate local captures return the existing completed state.
+Set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com`, `PAYPAL_RETURN_URL=http://localhost:8501`, and `PAYPAL_CANCEL_URL=http://localhost:8501`. Flask obtains a token and creates Orders API v2 CAPTURE orders. Streamlit returns from payer approval with the PayPal order token and invokes the signed-in user's capture route. The server checks completed status, amount, and currency. Duplicate application captures return the already completed state.
 
-The frontend redirects to PayPal approval. A return-route capture UI has not yet been implemented; call `POST /api/payments/capture` with the returned `token` as `orderId` and the user's bearer token. No successful payment is simulated. Webhook signature verification is not implemented. Sandbox credentials and network connectivity are needed for end-to-end verification.
+Payment order/capture behavior has mocked tests. A real Sandbox payment has not been completed in this environment because it requires credentials and payer approval. Webhook signature verification is not implemented. This is a Sandbox demonstration only, not a production integration.

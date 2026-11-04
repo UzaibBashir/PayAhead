@@ -1,4 +1,4 @@
-import os,csv,io
+import os,csv,io,ssl
 
 from datetime import date,datetime,timedelta
 
@@ -36,7 +36,7 @@ class Transaction(db.Model):
 
 class Product(db.Model):
 
- id=db.Column(db.Integer,primary_key=True); name=db.Column(db.String(160)); category=db.Column(db.String(70)); price=db.Column(db.Float); currency=db.Column(db.String(3),default='USD'); rating=db.Column(db.Float,default=4.5); image=db.Column(db.String(400)); description=db.Column(db.String(300))
+ id=db.Column(db.Integer,primary_key=True); name=db.Column(db.String(160)); category=db.Column(db.String(70)); price=db.Column(db.Float); currency=db.Column(db.String(3),default='USD'); rating=db.Column(db.Float,default=4.5); image=db.Column(db.String(400)); description=db.Column(db.String(300)); url=db.Column(db.String(500))
 
 class PriceHistory(db.Model):
  id=db.Column(db.Integer,primary_key=True); product_name=db.Column(db.String(160),index=True); observed_on=db.Column(db.Date,index=True); price=db.Column(db.Float); currency=db.Column(db.String(3)); source=db.Column(db.String(30),default='synthetic_demo')
@@ -46,6 +46,10 @@ class Schedule(db.Model):
 
 class ScheduleAlert(db.Model):
  id=db.Column(db.Integer,primary_key=True); schedule_id=db.Column(db.Integer,db.ForeignKey('schedule.id')); user_id=db.Column(db.Integer); message=db.Column(db.String(300)); created=db.Column(db.DateTime,default=datetime.utcnow); read=db.Column(db.Boolean,default=False)
+class Preference(db.Model):
+ id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer,index=True); key=db.Column(db.String(60)); value=db.Column(db.String(300))
+class AgentActivity(db.Model):
+ id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer,index=True); product=db.Column(db.String(160)); role=db.Column(db.String(60)); finding=db.Column(db.String(500)); created=db.Column(db.DateTime,default=datetime.utcnow)
 class Payment(db.Model):
 
  id=db.Column(db.Integer,primary_key=True); user_id=db.Column(db.Integer); product=db.Column(db.String(160)); amount=db.Column(db.Float); currency=db.Column(db.String(3)); paypal_order=db.Column(db.String(100),unique=True); status=db.Column(db.String(30),default='created'); created=db.Column(db.DateTime,default=datetime.utcnow)
@@ -61,6 +65,10 @@ DEMOS={
  'family':{'name':'The Rivera family','income':7800,'fixed':3400,'variable':2200,'savings':18600,'debt':650,'currency':'USD'},
 
  'goals':{'name':'Priya · Multiple goals','income':11200,'fixed':3600,'variable':1900,'savings':42000,'debt':900,'currency':'USD'}}
+
+def purchase_fit(profile_data,price):
+ m=metrics(profile_data); price=float(price)
+ return m['disposableIncome']>=price and m['savings']-price>=max(0,m['fixedExpenses']+m['variableExpenses'])*.5
 
 def demo(): return DEMOS['professional']
 
@@ -194,18 +202,80 @@ def forecast():
 
 def products():
 
- q=request.args.get('q','').lower(); vals=PRODUCTS+[{'name':p.name,'category':p.category,'price':p.price,'currency':p.currency,'rating':p.rating,'image':p.image,'description':p.description} for p in Product.query.all() if p.name not in {x['name'] for x in PRODUCTS}]; return jsonify(products=[p for p in vals if q in (p['name']+' '+p['category']).lower()])
+ q=request.args.get('q','').lower(); vals=PRODUCTS+[{'name':p.name,'category':p.category,'price':p.price,'currency':p.currency,'rating':p.rating,'image':p.image,'description':p.description,'url':p.url} for p in Product.query.all() if p.name not in {x['name'] for x in PRODUCTS}]; return jsonify(products=[p for p in vals if q in (p['name']+' '+p['category']).lower()])
 
 
 @app.get('/api/products/<int:product_id>/price-history')
 def price_history(product_id):
- product=Product.query.get_or_404(product_id); rows=PriceHistory.query.filter_by(product_name=product.name).order_by(PriceHistory.observed_on.asc()).all()
+ product=db.session.get(Product,product_id)
+ if not product:return jsonify(error='Product not found.'),404
+ rows=PriceHistory.query.filter_by(product_name=product.name).order_by(PriceHistory.observed_on.asc()).all()
  history=[{'date':r.observed_on.isoformat(),'price':r.price,'currency':r.currency} for r in rows]
  if len(rows)<8:return jsonify(product=product.name,source='unavailable',history=history,forecast=None,note='Insufficient price observations.')
  import numpy as np
  from sklearn.linear_model import LinearRegression
  x=np.arange(len(rows)).reshape(-1,1);y=np.array([r.price for r in rows]);cut=len(rows)-3;fit=LinearRegression().fit(x[:cut],y[:cut]);holdout=fit.predict(x[cut:]);mae=float(np.mean(np.abs(holdout-y[cut:])));full=LinearRegression().fit(x,y);estimate=max(0,float(full.predict([[len(rows)+1]])[0]))
  return jsonify(product=product.name,source=rows[0].source,history=history,forecast={'horizonDays':30,'estimatedPrice':round(estimate,2),'holdoutMAE':round(mae,2),'holdoutPoints':len(rows)-cut},note='Generated synthetic demo series; not a retailer quote or guarantee.')
+
+@app.post('/api/products')
+def add_product():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to add a product.'),401
+ d=request.get_json() or {}; name=str(d.get('name','')).strip()[:160]; category=str(d.get('category','Other'))[:70]
+ try:price=float(d.get('price',0))
+ except (TypeError,ValueError):return jsonify(error='Enter a valid price.'),400
+ currency=str(d.get('currency','USD')).upper()
+ if not name or price<=0 or currency not in {'USD','EUR','GBP','CAD','AUD','JPY','INR'}:return jsonify(error='Enter a name, positive price, and supported currency.') ,400
+ url=str(d.get('url','')).strip()
+ if url:
+  from urllib.parse import urlparse
+  import ipaddress,socket
+  parsed=urlparse(url)
+  if parsed.scheme not in ('http','https') or not parsed.hostname:return jsonify(error='Use a valid http or https product URL.'),400
+  try:
+   ips={x[4][0] for x in socket.getaddrinfo(parsed.hostname,None)}
+   if any(not ipaddress.ip_address(ip).is_global for ip in ips):return jsonify(error='Private and local network URLs are not allowed.'),400
+  except socket.gaierror:return jsonify(error='Product URL host could not be resolved.'),400
+ row=Product(name=name,category=category,price=price,currency=currency,rating=0,image='',description=str(d.get('description','User added product; price not externally verified.'))[:300],url=url or None);db.session.add(row);db.session.commit()
+ return jsonify(id=row.id,name=row.name,price=row.price,currency=row.currency,source='user_entered'),201
+@app.post('/api/products/extract')
+def extract_product_url():
+ if not current_user():return jsonify(error='Sign in to preview a product URL.'),401
+ url=str((request.get_json() or {}).get('url','')).strip()
+ if len(url)>2000:return jsonify(error='Product URL is too long.'),400
+ try:
+  from product_url import extract
+  result=extract(url);return jsonify(result)
+ except ValueError as exc:return jsonify(error=str(exc)),400
+ except (OSError,TimeoutError,ssl.SSLError) as exc:return jsonify(error='Could not safely read product metadata.'),400
+ except Exception as exc:app.logger.warning('Product preview failed: %s',exc);return jsonify(error='Product preview failed; enter details manually.'),502
+@app.get('/api/preferences')
+def get_preferences():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to view preferences.'),401
+ rows=Preference.query.filter_by(user_id=int(uid)).all();return jsonify(preferences={x.key:x.value for x in rows})
+@app.put('/api/preferences')
+def save_preferences():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to save preferences.'),401
+ data=request.get_json() or {}; allowed={'category','budget','currency','brand'}
+ for key,value in data.items():
+  if key not in allowed:continue
+  row=Preference.query.filter_by(user_id=int(uid),key=key).first()
+  if row is None:row=Preference(user_id=int(uid),key=key);db.session.add(row)
+  row.value=str(value)[:300]
+ db.session.commit();return jsonify(preferences={x.key:x.value for x in Preference.query.filter_by(user_id=int(uid)).all()})
+@app.delete('/api/preferences')
+def clear_preferences():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to remove preferences.'),401
+ Preference.query.filter_by(user_id=int(uid)).delete();db.session.commit();return jsonify(deleted=True)
+@app.get('/api/agents/activity')
+def agent_activity():
+ uid=current_user()
+ if not uid:return jsonify(error='Sign in to view saved activity.'),401
+ rows=AgentActivity.query.filter_by(user_id=int(uid)).order_by(AgentActivity.created.desc()).limit(100).all()
+ return jsonify(activity=[{'product':x.product,'role':x.role,'finding':x.finding,'created':x.created.isoformat()} for x in rows])
 
 @app.get('/api/price-history')
 def price_history_by_name():
@@ -217,15 +287,24 @@ def price_history_by_name():
 
 def analyze():
 
- d=request.get_json() or {}; m=metrics(profile(current_user())); price=max(0,float(d.get('price',0))); name=str(d.get('product','Purchase'))[:160]; safe=m['disposableIncome']>=price and m['savings']-price>=max(0,m['fixedExpenses']+m['variableExpenses'])*.5; ratio=price/max(1,m['income'])*100
+ d=request.get_json() or {}; p=profile(current_user()); m=metrics(p); name=str(d.get('product','Purchase'))[:160]; product_row=Product.query.filter_by(name=name).first()
+ if not product_row:return jsonify(error='Choose a product saved in the catalogue.'),404
+ price=float(product_row.price)
+ if str(d.get('price',price)) and round(float(d.get('price',price)),2)!=round(price,2):return jsonify(error='Submitted price differs from the saved listing.'),409
+ if product_row.currency!=p.get('currency','USD'):return jsonify(error='Product and profile currencies differ; currency conversion is unavailable.'),400
+ safe=purchase_fit(p,price); ratio=price/max(1,m['income'])*100
 
  scenarios=[{'label':'Buy now','days':0,'projectedCash':round(m['disposableIncome']-price,2),'result':'Comfortable' if safe else 'Tight'},{'label':'Wait 15 days','days':15,'projectedCash':round(max(0,m['disposableIncome']*.5-price),2),'result':'More room'},{'label':'Wait 30 days','days':30,'projectedCash':round(max(0,m['disposableIncome']*2-price),2),'result':'Build cash flow'},{'label':'Lower-cost option','days':0,'projectedCash':round(max(0,m['disposableIncome']-price*.7),2),'result':'Keeps more savings'}]
 
  from agents import run_specialists
 
- product_data=next((x for x in PRODUCTS if x['name']==name),{'name':name,'category':'User supplied'})
+ product_data={'name':product_row.name,'category':product_row.category,'description':product_row.description,'price':product_row.price,'currency':product_row.currency}
 
  specialists=run_specialists(product_data,price,m,safe)
+ uid=current_user()
+ if uid:
+  for specialist in specialists:db.session.add(AgentActivity(user_id=int(uid),product=name,role=specialist['name'],finding=specialist['finding']))
+  db.session.commit()
 
  recommendation='Buy when ready' if safe else 'Wait and build your buffer'
  fallback=f"Monthly surplus is {m['currency']} {m['disposableIncome']:,.0f}. The purchase is {ratio:.0f}% of monthly income. {'Your remaining savings preserve a basic buffer.' if safe else 'Buying now could reduce available cash or your emergency buffer.'}"
@@ -329,7 +408,11 @@ def create_order():
 
  if not uid:return jsonify(error='Sign in to prepare checkout.'),401
 
- if price<=0 or price>metrics(p)['disposableIncome']:return jsonify(error='Purchase is not within available monthly cash flow.'),400
+ product_row=Product.query.filter_by(name=str(d.get('product',''))).first()
+ if not product_row:return jsonify(error='Choose a product saved in the catalogue.'),400
+ if round(price,2)!=round(float(product_row.price),2) or str(d.get('currency','USD')).upper()!=product_row.currency:return jsonify(error='Submitted price/currency differs from the saved listing.'),409
+ if product_row.currency!=p.get('currency','USD'):return jsonify(error='Product and profile currencies differ; currency conversion is unavailable.'),400
+ if not purchase_fit(p,price):return jsonify(error='Purchase would exceed available cash or reduce the basic savings buffer.'),400
 
  cid=os.getenv('PAYPAL_CLIENT_ID'); secret=os.getenv('PAYPAL_CLIENT_SECRET')
 
@@ -369,6 +452,8 @@ def capture():
 
 with app.app_context():
  db.create_all()
+ from sqlalchemy import inspect,text
+ if 'url' not in {c['name'] for c in inspect(db.engine).get_columns('product')}: db.session.execute(text('ALTER TABLE product ADD COLUMN url VARCHAR(500)')); db.session.commit()
  for product in PRODUCTS:
   if not Product.query.filter_by(name=product['name']).first(): db.session.add(Product(**product))
  db.session.commit()
