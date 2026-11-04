@@ -6,3 +6,13 @@ def test_metrics():
 def test_health_demo():
  c=app.test_client(); assert c.get('/api/health').json['status']=='ok'; d=c.get('/api/dashboard').json; assert d['simulated'] and d['metrics']['disposableIncome']==1550
 def test_search(): assert len(app.test_client().get('/api/products?q=headphones').json['products'])==1
+
+
+def test_demo_profiles_catalogue_and_specialists():
+ c=app.test_client(); assert len(c.get('/api/dashboard').json['demoProfiles'])==5; assert len(c.get('/api/products').json['products'])>=20
+ result=c.post('/api/analyze',json={'product':'Studio Pro Laptop','price':1499}).json
+ assert len(result['agents'])==5 and result['agents'][2]['name']=='Price Intelligence'
+ assert result['agents'][2]['finding'].startswith('No verified price history')
+
+def test_forecast_is_explicit_about_demo_method():
+ r=app.test_client().get('/api/forecast').json; assert r['simulated'] is True and 'not a learned' in r['note']

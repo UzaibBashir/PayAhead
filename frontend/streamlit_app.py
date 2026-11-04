@@ -55,7 +55,22 @@ with st.sidebar:
    st.error(result.get('error','Account request failed.'))
  st.divider(); st.caption('Your money. Your call. Payments always need your approval.')
 
-dashboard=api_get('/dashboard')
+if not st.session_state.token:
+ demos=api_get('/dashboard') or {}; choices=demos.get('demoProfiles',[])
+ if choices:
+  selected=st.sidebar.selectbox('Demo profile',[x['name'] for x in choices],index=0,key='demo_profile')
+  profile_id=next(x['id'] for x in choices if x['name']==selected)
+ else: profile_id='professional'
+ dashboard=api_get('/dashboard',params={'profile':profile_id})
+else: dashboard=api_get('/dashboard')
+# PayPal returns the approved order ID as `token`; capture is server-side and checks amount/currency.
+order_token=st.query_params.get('token')
+if order_token and st.session_state.token:
+ status,capture_result=api_post('/payments/capture',{'orderId':order_token})
+ if status==200 and capture_result.get('verified'): st.success('PayPal Sandbox payment captured and verified.')
+ elif status==200 and capture_result.get('duplicate'): st.info('This order was already captured.')
+ else: st.error(capture_result.get('error','Could not verify PayPal capture.'))
+ st.query_params.clear()
 if not dashboard:
  st.title('PayAhead'); st.error('The API is unavailable. Start it with `python backend/app.py` and refresh.'); st.stop()
 profile=dashboard['profile']; metrics=dashboard['metrics']; currency=metrics.get('currency','USD')
@@ -119,7 +134,7 @@ elif page=='Purchase advisor':
     if not st.session_state.token: st.warning('Sign in before preparing checkout.')
     else:
      status,order=api_post('/payments/order',{'product':p['name'],'price':p['price'],'currency':p['currency']})
-     if status==200 and order.get('approveUrl'): st.link_button('Approve in PayPal Sandbox',order['approveUrl'])
+     if status==200 and order.get('approveUrl'): st.link_button('Approve in PayPal Sandbox',order['approveUrl'],use_container_width=True)
      else: st.error(order.get('error','Checkout unavailable.'))
 elif page=='Transactions':
  st.subheader('Recent activity'); tx=pd.DataFrame(dashboard.get('transactions',[])); st.dataframe(tx,use_container_width=True,hide_index=True) if not tx.empty else st.info('No transactions yet.')
@@ -129,6 +144,23 @@ elif page=='Transactions':
   if st.button('Import transactions',type='primary'):
    status,result=api_post('/transactions/import',files={'file':(uploaded.name,uploaded.getvalue(),'text/csv')})
    st.success(f"Imported {result.get('imported',0)} transactions.") if status==200 else st.error(result.get('error','Import failed.'))
+ anomalies=api_get('/anomalies')
+ if anomalies:
+  st.subheader('Unusual amounts to review')
+  st.caption(anomalies['note'])
+  if anomalies.get('anomalies'): st.dataframe(pd.DataFrame(anomalies['anomalies']),use_container_width=True,hide_index=True)
 else:
- st.subheader('Purchase watches'); st.info('Saved purchase watches are available to signed-in accounts through the API. Scheduling and notifications are not yet shown in this Streamlit view.')
+ st.subheader('Purchase watches')
+ if not st.session_state.token: st.info('Sign in to save a price or date watch.')
+ else:
+  with st.form('schedule_watch'):
+   product_name=st.text_input('Product name'); target=st.number_input('Target price',min_value=0.0,step=10.0); due=st.date_input('Review by')
+   if st.form_submit_button('Save watch',type='primary'):
+    status,result=api_post('/schedule',{'product':product_name,'target':target,'due':due.isoformat()})
+    st.success('Watch saved.') if status==201 else st.error(result.get('error','Could not save watch.'))
+  result=api_get('/schedule')
+  if result and result.get('schedules'): st.dataframe(pd.DataFrame(result['schedules']),use_container_width=True,hide_index=True)
+ st.subheader('Cash-flow outlook')
+ forecast=api_get('/forecast')
+ if forecast: st.info(f"Method: {forecast['method']}. Monthly net estimate: {fmt(forecast['monthlyNet'])}. {forecast['note']}")
 st.divider(); st.caption('PayAhead provides educational estimates, not financial advice. The dashboard cash-flow chart is not a bank forecast.')

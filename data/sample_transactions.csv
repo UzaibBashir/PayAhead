@@ -1,1 +1,1001 @@
-date,description,category,amount
+date,description,category,amount,dataset_note
+2026-01-28,Rent Payment,Housing,638.07,synthetic
+2026-10-23,Rent Payment,Housing,1065.61,synthetic
+2026-05-19,Book Shop,Shopping,136.31,synthetic
+2026-03-11,Restaurant,Dining,10.16,synthetic
+2026-01-22,Grocery Market,Food,109.94,synthetic
+2026-04-16,Cafe North,Dining,235.35,synthetic
+2026-10-23,Cafe North,Dining,67.74,synthetic
+2026-01-04,Restaurant,Dining,143.44,synthetic
+2026-03-28,Restaurant,Dining,15.66,synthetic
+2026-05-07,Power Utility,Bills,186.53,synthetic
+2026-10-13,Streaming Media,Subscriptions,37.0,synthetic
+2026-01-16,Grocery Market,Food,36.71,synthetic
+2026-04-15,Cafe North,Dining,20.42,synthetic
+2026-09-11,Power Utility,Bills,1138.63,synthetic
+2025-12-03,Restaurant,Dining,50.24,synthetic
+2025-12-28,Book Shop,Shopping,100.67,synthetic
+2026-10-09,City Transit,Transport,102.47,synthetic
+2026-03-01,Streaming Media,Subscriptions,207.4,synthetic
+2025-12-13,Grocery Market,Food,27.92,synthetic
+2026-05-28,Streaming Media,Subscriptions,227.41,synthetic
+2026-03-27,Rent Payment,Housing,986.22,synthetic
+2025-11-11,Fuel Station,Transport,14.52,synthetic
+2026-01-14,Streaming Media,Subscriptions,82.67,synthetic
+2026-10-19,City Transit,Transport,174.16,synthetic
+2026-10-31,City Transit,Transport,236.88,synthetic
+2026-06-03,Cafe North,Dining,215.6,synthetic
+2026-06-06,City Transit,Transport,149.3,synthetic
+2026-03-07,Restaurant,Dining,204.83,synthetic
+2026-06-27,Power Utility,Bills,821.05,synthetic
+2025-12-16,Rent Payment,Housing,1432.73,synthetic
+2026-10-21,Book Shop,Shopping,133.77,synthetic
+2026-10-30,Power Utility,Bills,541.91,synthetic
+2026-09-18,Pharmacy,Health,195.44,synthetic
+2026-04-03,Rent Payment,Housing,1430.51,synthetic
+2026-02-21,Streaming Media,Subscriptions,177.83,synthetic
+2025-11-19,Fuel Station,Transport,46.11,synthetic
+2026-10-11,Power Utility,Bills,374.29,synthetic
+2026-03-05,Power Utility,Bills,172.0,synthetic
+2026-01-22,Fuel Station,Transport,139.55,synthetic
+2026-02-28,Streaming Media,Subscriptions,84.34,synthetic
+2026-01-03,Rent Payment,Housing,1236.39,synthetic
+2026-11-04,Streaming Media,Subscriptions,146.91,synthetic
+2026-07-16,Power Utility,Bills,1021.44,synthetic
+2026-03-22,Rent Payment,Housing,1748.99,synthetic
+2026-09-01,Pharmacy,Health,14.92,synthetic
+2026-07-24,Cafe North,Dining,156.09,synthetic
+2026-02-02,Fuel Station,Transport,158.73,synthetic
+2025-12-10,Rent Payment,Housing,1326.19,synthetic
+2026-09-04,Grocery Market,Food,126.27,synthetic
+2026-05-27,Pharmacy,Health,57.67,synthetic
+2026-03-16,Book Shop,Shopping,73.87,synthetic
+2026-01-05,Rent Payment,Housing,1124.82,synthetic
+2026-06-05,Book Shop,Shopping,152.24,synthetic
+2026-07-13,Book Shop,Shopping,101.54,synthetic
+2026-07-02,Power Utility,Bills,229.79,synthetic
+2026-07-09,Restaurant,Dining,110.36,synthetic
+2026-04-02,Cafe North,Dining,217.62,synthetic
+2026-07-03,City Transit,Transport,65.31,synthetic
+2025-12-01,Restaurant,Dining,199.63,synthetic
+2026-11-01,Restaurant,Dining,199.57,synthetic
+2026-09-22,Fuel Station,Transport,14.22,synthetic
+2026-07-17,Power Utility,Bills,777.83,synthetic
+2026-08-27,Pharmacy,Health,221.07,synthetic
+2025-11-12,Cafe North,Dining,107.23,synthetic
+2026-09-15,Power Utility,Bills,348.35,synthetic
+2025-11-17,Fuel Station,Transport,100.93,synthetic
+2025-11-17,Restaurant,Dining,131.16,synthetic
+2026-03-22,Power Utility,Bills,1493.05,synthetic
+2026-07-31,Restaurant,Dining,13.54,synthetic
+2026-02-07,Power Utility,Bills,731.25,synthetic
+2026-08-31,Grocery Market,Food,130.25,synthetic
+2026-07-12,Fuel Station,Transport,167.96,synthetic
+2025-11-24,City Transit,Transport,139.74,synthetic
+2026-03-25,Power Utility,Bills,702.84,synthetic
+2026-10-07,Streaming Media,Subscriptions,28.26,synthetic
+2026-04-11,Streaming Media,Subscriptions,11.89,synthetic
+2025-12-08,City Transit,Transport,78.63,synthetic
+2026-04-16,Fuel Station,Transport,201.79,synthetic
+2026-05-13,Streaming Media,Subscriptions,182.57,synthetic
+2025-12-17,Fuel Station,Transport,192.42,synthetic
+2026-05-02,City Transit,Transport,93.98,synthetic
+2026-01-31,Cafe North,Dining,208.43,synthetic
+2025-12-19,Book Shop,Shopping,44.92,synthetic
+2026-04-14,City Transit,Transport,203.54,synthetic
+2026-04-13,Book Shop,Shopping,217.52,synthetic
+2026-02-11,Pharmacy,Health,202.12,synthetic
+2026-10-24,Grocery Market,Food,217.38,synthetic
+2026-01-19,City Transit,Transport,215.95,synthetic
+2026-03-24,Book Shop,Shopping,130.06,synthetic
+2026-07-03,Pharmacy,Health,235.18,synthetic
+2026-05-29,Fuel Station,Transport,187.14,synthetic
+2026-10-12,Streaming Media,Subscriptions,160.79,synthetic
+2026-03-23,Restaurant,Dining,131.5,synthetic
+2026-03-09,Restaurant,Dining,168.55,synthetic
+2026-07-29,Grocery Market,Food,182.85,synthetic
+2026-10-10,Grocery Market,Food,52.84,synthetic
+2026-03-12,Pharmacy,Health,73.29,synthetic
+2025-12-21,Book Shop,Shopping,70.78,synthetic
+2026-08-24,City Transit,Transport,204.15,synthetic
+2026-08-09,Book Shop,Shopping,44.22,synthetic
+2025-11-10,Fuel Station,Transport,182.66,synthetic
+2026-03-03,Pharmacy,Health,158.33,synthetic
+2026-06-04,Pharmacy,Health,223.54,synthetic
+2026-06-22,Restaurant,Dining,227.07,synthetic
+2025-11-23,Rent Payment,Housing,1199.78,synthetic
+2026-09-12,Power Utility,Bills,166.76,synthetic
+2026-07-15,Pharmacy,Health,12.92,synthetic
+2026-07-23,Rent Payment,Housing,1260.73,synthetic
+2026-07-03,Restaurant,Dining,138.21,synthetic
+2026-01-04,Restaurant,Dining,19.08,synthetic
+2025-12-16,Rent Payment,Housing,855.72,synthetic
+2026-10-22,Fuel Station,Transport,215.22,synthetic
+2026-10-26,City Transit,Transport,196.54,synthetic
+2026-10-19,Grocery Market,Food,28.16,synthetic
+2026-06-12,Restaurant,Dining,71.64,synthetic
+2025-11-21,Rent Payment,Housing,530.53,synthetic
+2026-09-16,Cafe North,Dining,151.45,synthetic
+2026-08-06,City Transit,Transport,222.85,synthetic
+2026-07-02,Rent Payment,Housing,729.72,synthetic
+2026-08-31,Power Utility,Bills,704.84,synthetic
+2026-07-28,City Transit,Transport,216.46,synthetic
+2026-10-24,Fuel Station,Transport,44.89,synthetic
+2026-09-25,Book Shop,Shopping,55.94,synthetic
+2026-07-10,Book Shop,Shopping,193.27,synthetic
+2026-03-09,Streaming Media,Subscriptions,178.7,synthetic
+2025-11-17,Fuel Station,Transport,59.88,synthetic
+2026-03-21,City Transit,Transport,28.34,synthetic
+2026-02-01,Pharmacy,Health,193.77,synthetic
+2026-01-18,Cafe North,Dining,236.45,synthetic
+2025-11-07,Cafe North,Dining,89.48,synthetic
+2025-12-11,Streaming Media,Subscriptions,26.82,synthetic
+2025-12-31,Fuel Station,Transport,171.46,synthetic
+2025-12-20,Pharmacy,Health,158.27,synthetic
+2026-05-09,Power Utility,Bills,1776.45,synthetic
+2026-01-17,Power Utility,Bills,1712.06,synthetic
+2026-01-25,Book Shop,Shopping,27.34,synthetic
+2026-06-26,City Transit,Transport,51.24,synthetic
+2026-03-12,Power Utility,Bills,1003.72,synthetic
+2025-12-16,Streaming Media,Subscriptions,58.71,synthetic
+2026-06-04,Pharmacy,Health,126.19,synthetic
+2026-07-07,Streaming Media,Subscriptions,89.19,synthetic
+2026-09-19,Pharmacy,Health,189.59,synthetic
+2025-12-22,Book Shop,Shopping,42.38,synthetic
+2026-04-01,Grocery Market,Food,111.69,synthetic
+2026-01-21,Rent Payment,Housing,886.68,synthetic
+2026-04-16,Streaming Media,Subscriptions,197.48,synthetic
+2025-12-16,Power Utility,Bills,214.59,synthetic
+2026-03-31,City Transit,Transport,133.41,synthetic
+2026-04-23,Book Shop,Shopping,206.62,synthetic
+2026-07-25,Power Utility,Bills,1696.47,synthetic
+2026-10-13,Restaurant,Dining,130.33,synthetic
+2025-12-09,Restaurant,Dining,106.72,synthetic
+2026-06-30,Restaurant,Dining,170.32,synthetic
+2026-09-13,Power Utility,Bills,1348.11,synthetic
+2026-09-27,Rent Payment,Housing,329.12,synthetic
+2025-12-22,Cafe North,Dining,135.71,synthetic
+2026-09-04,Grocery Market,Food,189.22,synthetic
+2026-04-27,Power Utility,Bills,398.71,synthetic
+2026-06-04,Rent Payment,Housing,469.74,synthetic
+2026-05-26,Streaming Media,Subscriptions,75.33,synthetic
+2026-04-08,Grocery Market,Food,108.55,synthetic
+2026-02-06,Power Utility,Bills,1620.0,synthetic
+2025-11-21,Restaurant,Dining,154.36,synthetic
+2026-05-28,Pharmacy,Health,141.51,synthetic
+2025-11-29,Grocery Market,Food,209.2,synthetic
+2026-06-07,Fuel Station,Transport,146.88,synthetic
+2026-10-13,Book Shop,Shopping,225.65,synthetic
+2026-06-20,Fuel Station,Transport,111.04,synthetic
+2026-03-05,Rent Payment,Housing,1399.32,synthetic
+2025-11-14,Streaming Media,Subscriptions,125.14,synthetic
+2026-04-10,City Transit,Transport,52.82,synthetic
+2026-05-05,Grocery Market,Food,21.44,synthetic
+2026-09-04,Restaurant,Dining,128.85,synthetic
+2026-04-25,Pharmacy,Health,238.64,synthetic
+2026-02-28,Book Shop,Shopping,83.02,synthetic
+2026-02-16,City Transit,Transport,224.01,synthetic
+2026-08-10,Grocery Market,Food,10.3,synthetic
+2025-12-17,Rent Payment,Housing,86.37,synthetic
+2026-08-03,Streaming Media,Subscriptions,37.47,synthetic
+2026-09-26,Restaurant,Dining,175.93,synthetic
+2026-07-13,Fuel Station,Transport,237.82,synthetic
+2026-09-23,Rent Payment,Housing,146.43,synthetic
+2026-01-10,City Transit,Transport,29.39,synthetic
+2026-09-13,Streaming Media,Subscriptions,163.34,synthetic
+2026-02-06,Power Utility,Bills,1251.54,synthetic
+2026-05-21,City Transit,Transport,173.26,synthetic
+2025-12-21,Cafe North,Dining,44.51,synthetic
+2025-11-20,Cafe North,Dining,236.51,synthetic
+2026-05-28,Fuel Station,Transport,11.88,synthetic
+2026-03-19,Pharmacy,Health,26.09,synthetic
+2026-02-07,Book Shop,Shopping,20.71,synthetic
+2026-06-22,Pharmacy,Health,72.1,synthetic
+2026-06-20,City Transit,Transport,115.92,synthetic
+2026-06-19,Pharmacy,Health,62.75,synthetic
+2026-06-15,Grocery Market,Food,23.74,synthetic
+2026-07-22,Streaming Media,Subscriptions,159.15,synthetic
+2026-02-12,Fuel Station,Transport,104.62,synthetic
+2026-09-25,Book Shop,Shopping,221.11,synthetic
+2026-10-23,Fuel Station,Transport,69.35,synthetic
+2026-06-23,Restaurant,Dining,156.29,synthetic
+2026-03-16,Restaurant,Dining,209.93,synthetic
+2026-06-21,Restaurant,Dining,51.07,synthetic
+2026-07-08,Cafe North,Dining,125.19,synthetic
+2025-12-06,Power Utility,Bills,178.39,synthetic
+2026-10-16,Cafe North,Dining,70.3,synthetic
+2025-12-26,Power Utility,Bills,840.7,synthetic
+2026-07-29,Book Shop,Shopping,74.55,synthetic
+2025-11-20,Power Utility,Bills,1511.94,synthetic
+2026-09-29,Streaming Media,Subscriptions,153.4,synthetic
+2026-06-19,Pharmacy,Health,148.05,synthetic
+2026-09-06,Book Shop,Shopping,224.23,synthetic
+2026-06-09,Rent Payment,Housing,148.41,synthetic
+2026-10-17,Fuel Station,Transport,60.09,synthetic
+2026-09-13,Fuel Station,Transport,175.28,synthetic
+2026-08-31,Book Shop,Shopping,188.26,synthetic
+2026-05-02,Restaurant,Dining,11.09,synthetic
+2026-03-16,Grocery Market,Food,237.57,synthetic
+2026-07-25,Streaming Media,Subscriptions,167.85,synthetic
+2026-02-08,Pharmacy,Health,52.12,synthetic
+2026-05-04,Pharmacy,Health,26.8,synthetic
+2025-12-03,Power Utility,Bills,393.85,synthetic
+2026-02-08,Cafe North,Dining,202.06,synthetic
+2026-10-13,Rent Payment,Housing,1474.7,synthetic
+2026-02-22,Book Shop,Shopping,198.78,synthetic
+2026-08-25,Pharmacy,Health,236.85,synthetic
+2026-07-26,Cafe North,Dining,218.82,synthetic
+2026-06-19,Restaurant,Dining,27.43,synthetic
+2026-03-26,Streaming Media,Subscriptions,128.85,synthetic
+2025-11-27,Grocery Market,Food,222.53,synthetic
+2026-11-01,Pharmacy,Health,130.34,synthetic
+2026-06-04,Streaming Media,Subscriptions,155.42,synthetic
+2026-08-18,Fuel Station,Transport,8.44,synthetic
+2026-05-28,City Transit,Transport,136.7,synthetic
+2026-10-03,Fuel Station,Transport,19.34,synthetic
+2026-01-10,Book Shop,Shopping,23.32,synthetic
+2026-02-10,City Transit,Transport,66.04,synthetic
+2026-02-19,Power Utility,Bills,1691.47,synthetic
+2026-07-04,Rent Payment,Housing,1211.99,synthetic
+2026-08-26,Streaming Media,Subscriptions,32.99,synthetic
+2026-02-28,City Transit,Transport,219.73,synthetic
+2026-06-06,Cafe North,Dining,218.89,synthetic
+2026-08-12,Pharmacy,Health,122.5,synthetic
+2026-01-20,Rent Payment,Housing,311.3,synthetic
+2026-08-27,City Transit,Transport,206.97,synthetic
+2026-03-12,Power Utility,Bills,1080.04,synthetic
+2026-05-10,City Transit,Transport,100.46,synthetic
+2026-02-21,Grocery Market,Food,171.08,synthetic
+2025-11-04,Pharmacy,Health,185.38,synthetic
+2026-09-01,City Transit,Transport,157.79,synthetic
+2026-06-28,Rent Payment,Housing,425.44,synthetic
+2026-02-26,Pharmacy,Health,143.61,synthetic
+2026-02-05,Book Shop,Shopping,137.69,synthetic
+2026-08-19,Streaming Media,Subscriptions,206.93,synthetic
+2026-05-17,Rent Payment,Housing,1780.37,synthetic
+2026-04-06,Power Utility,Bills,795.54,synthetic
+2025-11-09,Rent Payment,Housing,532.77,synthetic
+2026-05-02,Power Utility,Bills,420.69,synthetic
+2026-07-22,Rent Payment,Housing,1272.99,synthetic
+2026-03-01,Rent Payment,Housing,451.34,synthetic
+2025-12-03,Restaurant,Dining,209.34,synthetic
+2026-07-25,Rent Payment,Housing,860.61,synthetic
+2025-12-13,Restaurant,Dining,152.24,synthetic
+2026-02-01,Cafe North,Dining,203.89,synthetic
+2026-01-10,Restaurant,Dining,198.63,synthetic
+2026-03-05,City Transit,Transport,170.95,synthetic
+2026-08-02,Pharmacy,Health,85.87,synthetic
+2026-03-06,Fuel Station,Transport,103.24,synthetic
+2026-10-10,Pharmacy,Health,45.39,synthetic
+2026-01-07,Restaurant,Dining,232.47,synthetic
+2026-08-07,Streaming Media,Subscriptions,13.02,synthetic
+2026-10-10,Fuel Station,Transport,69.56,synthetic
+2026-11-02,Book Shop,Shopping,95.43,synthetic
+2026-03-03,Book Shop,Shopping,192.17,synthetic
+2026-03-29,Rent Payment,Housing,1719.56,synthetic
+2025-12-14,Grocery Market,Food,177.68,synthetic
+2026-05-23,Power Utility,Bills,285.73,synthetic
+2026-06-16,Rent Payment,Housing,368.12,synthetic
+2026-01-30,Cafe North,Dining,78.33,synthetic
+2026-07-30,City Transit,Transport,94.6,synthetic
+2026-09-06,Power Utility,Bills,884.25,synthetic
+2025-11-08,Cafe North,Dining,194.26,synthetic
+2026-04-22,Grocery Market,Food,30.39,synthetic
+2026-02-01,Pharmacy,Health,185.01,synthetic
+2026-05-19,Cafe North,Dining,152.19,synthetic
+2026-02-26,Restaurant,Dining,169.25,synthetic
+2026-07-01,Streaming Media,Subscriptions,140.87,synthetic
+2026-09-18,Rent Payment,Housing,161.12,synthetic
+2026-09-07,Restaurant,Dining,123.41,synthetic
+2026-07-18,City Transit,Transport,175.18,synthetic
+2026-06-23,Fuel Station,Transport,219.27,synthetic
+2026-06-16,City Transit,Transport,25.76,synthetic
+2026-09-12,Streaming Media,Subscriptions,58.91,synthetic
+2026-06-10,City Transit,Transport,198.76,synthetic
+2025-11-06,Power Utility,Bills,81.22,synthetic
+2026-07-03,Restaurant,Dining,102.7,synthetic
+2026-01-02,Book Shop,Shopping,29.64,synthetic
+2026-10-18,Cafe North,Dining,64.72,synthetic
+2025-12-02,Fuel Station,Transport,190.79,synthetic
+2026-10-20,Restaurant,Dining,28.64,synthetic
+2026-01-12,City Transit,Transport,46.23,synthetic
+2026-07-31,Pharmacy,Health,135.94,synthetic
+2026-03-31,Cafe North,Dining,95.08,synthetic
+2026-03-28,Streaming Media,Subscriptions,217.16,synthetic
+2026-10-03,Rent Payment,Housing,698.35,synthetic
+2026-02-19,Book Shop,Shopping,226.91,synthetic
+2026-09-09,Rent Payment,Housing,1413.01,synthetic
+2026-07-14,Pharmacy,Health,157.44,synthetic
+2025-12-14,Restaurant,Dining,176.13,synthetic
+2026-06-30,Rent Payment,Housing,97.35,synthetic
+2026-03-15,City Transit,Transport,192.63,synthetic
+2025-11-04,City Transit,Transport,12.2,synthetic
+2025-11-30,Grocery Market,Food,163.34,synthetic
+2025-11-14,Power Utility,Bills,278.22,synthetic
+2026-07-30,Power Utility,Bills,951.13,synthetic
+2026-10-02,Fuel Station,Transport,68.84,synthetic
+2026-10-21,City Transit,Transport,192.23,synthetic
+2026-02-17,Rent Payment,Housing,783.93,synthetic
+2026-07-19,City Transit,Transport,189.57,synthetic
+2026-04-26,City Transit,Transport,229.92,synthetic
+2026-06-30,Restaurant,Dining,79.16,synthetic
+2026-02-07,Book Shop,Shopping,237.22,synthetic
+2026-06-11,Book Shop,Shopping,195.42,synthetic
+2025-11-30,Grocery Market,Food,171.46,synthetic
+2026-04-19,Streaming Media,Subscriptions,94.72,synthetic
+2025-12-26,Pharmacy,Health,152.9,synthetic
+2026-02-16,Rent Payment,Housing,562.17,synthetic
+2025-12-03,Grocery Market,Food,167.59,synthetic
+2026-09-28,Streaming Media,Subscriptions,90.5,synthetic
+2026-04-08,Fuel Station,Transport,50.91,synthetic
+2026-06-05,Grocery Market,Food,88.54,synthetic
+2026-01-10,Rent Payment,Housing,1177.12,synthetic
+2026-08-04,City Transit,Transport,227.43,synthetic
+2025-11-25,Book Shop,Shopping,50.8,synthetic
+2026-08-01,Book Shop,Shopping,235.97,synthetic
+2025-12-01,Fuel Station,Transport,50.8,synthetic
+2026-08-16,Fuel Station,Transport,49.14,synthetic
+2026-10-21,City Transit,Transport,230.61,synthetic
+2025-12-03,Restaurant,Dining,26.0,synthetic
+2026-04-26,Book Shop,Shopping,199.43,synthetic
+2025-12-30,Power Utility,Bills,1375.42,synthetic
+2026-09-13,Rent Payment,Housing,357.24,synthetic
+2026-04-22,Fuel Station,Transport,177.69,synthetic
+2025-11-25,Cafe North,Dining,65.21,synthetic
+2026-01-18,Grocery Market,Food,170.4,synthetic
+2026-08-27,Restaurant,Dining,27.96,synthetic
+2026-06-14,Fuel Station,Transport,180.85,synthetic
+2026-07-14,Rent Payment,Housing,444.39,synthetic
+2026-05-21,Fuel Station,Transport,104.36,synthetic
+2026-02-25,Grocery Market,Food,60.67,synthetic
+2026-02-11,Restaurant,Dining,133.99,synthetic
+2026-06-22,Rent Payment,Housing,375.52,synthetic
+2026-03-14,Streaming Media,Subscriptions,94.95,synthetic
+2026-01-25,Fuel Station,Transport,27.62,synthetic
+2026-07-01,Cafe North,Dining,182.59,synthetic
+2026-02-24,Book Shop,Shopping,121.4,synthetic
+2026-08-22,Rent Payment,Housing,721.57,synthetic
+2026-01-06,Fuel Station,Transport,224.27,synthetic
+2025-12-20,Rent Payment,Housing,1579.55,synthetic
+2026-03-23,Book Shop,Shopping,150.53,synthetic
+2026-08-26,Pharmacy,Health,83.56,synthetic
+2026-09-19,Fuel Station,Transport,51.96,synthetic
+2025-11-22,Streaming Media,Subscriptions,78.2,synthetic
+2026-04-22,Streaming Media,Subscriptions,227.57,synthetic
+2026-10-29,Rent Payment,Housing,427.17,synthetic
+2026-05-06,Power Utility,Bills,640.77,synthetic
+2026-03-22,Book Shop,Shopping,204.88,synthetic
+2026-04-02,Grocery Market,Food,160.53,synthetic
+2026-03-30,Rent Payment,Housing,204.87,synthetic
+2026-08-21,Rent Payment,Housing,634.53,synthetic
+2026-08-05,Rent Payment,Housing,1098.81,synthetic
+2026-09-29,Cafe North,Dining,203.6,synthetic
+2026-07-06,Book Shop,Shopping,106.68,synthetic
+2026-04-07,Cafe North,Dining,49.8,synthetic
+2026-01-21,Grocery Market,Food,105.46,synthetic
+2026-06-10,City Transit,Transport,14.52,synthetic
+2025-12-11,Cafe North,Dining,196.41,synthetic
+2026-05-29,Grocery Market,Food,77.37,synthetic
+2026-06-24,Power Utility,Bills,843.18,synthetic
+2026-09-07,Power Utility,Bills,520.19,synthetic
+2026-01-28,Pharmacy,Health,14.03,synthetic
+2026-06-01,Fuel Station,Transport,8.89,synthetic
+2026-04-12,Rent Payment,Housing,348.96,synthetic
+2026-10-03,Book Shop,Shopping,167.31,synthetic
+2026-02-28,City Transit,Transport,20.99,synthetic
+2026-06-14,Power Utility,Bills,181.24,synthetic
+2025-12-29,Fuel Station,Transport,154.63,synthetic
+2026-07-01,City Transit,Transport,111.25,synthetic
+2026-09-04,Power Utility,Bills,1415.22,synthetic
+2025-12-14,Cafe North,Dining,42.72,synthetic
+2026-08-29,City Transit,Transport,68.52,synthetic
+2026-01-30,City Transit,Transport,185.73,synthetic
+2026-05-09,Pharmacy,Health,155.15,synthetic
+2025-12-25,Restaurant,Dining,29.22,synthetic
+2025-12-29,Power Utility,Bills,261.08,synthetic
+2026-08-27,Restaurant,Dining,164.85,synthetic
+2026-10-31,Cafe North,Dining,32.1,synthetic
+2026-04-09,Rent Payment,Housing,290.7,synthetic
+2026-07-15,Power Utility,Bills,515.73,synthetic
+2026-03-11,Streaming Media,Subscriptions,13.41,synthetic
+2026-06-16,Fuel Station,Transport,136.49,synthetic
+2026-10-29,Fuel Station,Transport,149.08,synthetic
+2026-06-18,City Transit,Transport,102.61,synthetic
+2026-11-04,Rent Payment,Housing,699.38,synthetic
+2026-03-18,Streaming Media,Subscriptions,223.11,synthetic
+2026-04-20,Rent Payment,Housing,1150.86,synthetic
+2026-10-23,Fuel Station,Transport,232.66,synthetic
+2026-03-19,Cafe North,Dining,23.9,synthetic
+2026-09-28,Streaming Media,Subscriptions,206.29,synthetic
+2025-11-06,City Transit,Transport,77.52,synthetic
+2026-06-02,Restaurant,Dining,66.66,synthetic
+2025-12-03,Streaming Media,Subscriptions,205.51,synthetic
+2026-05-29,Book Shop,Shopping,123.68,synthetic
+2025-12-06,Fuel Station,Transport,39.85,synthetic
+2026-08-01,Book Shop,Shopping,198.04,synthetic
+2026-07-22,Book Shop,Shopping,185.63,synthetic
+2026-10-15,Rent Payment,Housing,840.59,synthetic
+2026-07-22,Book Shop,Shopping,18.37,synthetic
+2026-03-06,Fuel Station,Transport,225.73,synthetic
+2026-02-17,Book Shop,Shopping,121.93,synthetic
+2026-01-06,Pharmacy,Health,74.42,synthetic
+2026-04-14,City Transit,Transport,129.9,synthetic
+2026-01-02,Grocery Market,Food,140.87,synthetic
+2026-05-24,Power Utility,Bills,791.14,synthetic
+2026-10-10,Streaming Media,Subscriptions,226.55,synthetic
+2026-10-16,Cafe North,Dining,130.58,synthetic
+2026-07-27,Streaming Media,Subscriptions,74.07,synthetic
+2026-09-07,Grocery Market,Food,236.69,synthetic
+2026-10-22,Fuel Station,Transport,163.23,synthetic
+2026-02-14,Grocery Market,Food,199.07,synthetic
+2026-01-29,Rent Payment,Housing,1662.22,synthetic
+2026-05-07,Book Shop,Shopping,215.41,synthetic
+2025-11-06,Streaming Media,Subscriptions,185.18,synthetic
+2026-02-28,Rent Payment,Housing,731.54,synthetic
+2026-06-23,Power Utility,Bills,829.1,synthetic
+2026-04-04,Fuel Station,Transport,77.24,synthetic
+2026-03-23,Grocery Market,Food,209.09,synthetic
+2025-11-25,City Transit,Transport,84.17,synthetic
+2026-05-04,Streaming Media,Subscriptions,209.76,synthetic
+2026-01-16,Rent Payment,Housing,468.8,synthetic
+2026-10-29,Cafe North,Dining,48.32,synthetic
+2026-06-16,Pharmacy,Health,93.03,synthetic
+2026-07-16,Streaming Media,Subscriptions,131.91,synthetic
+2026-05-06,Fuel Station,Transport,123.49,synthetic
+2026-08-09,Streaming Media,Subscriptions,57.5,synthetic
+2025-12-29,City Transit,Transport,77.96,synthetic
+2026-09-04,Rent Payment,Housing,873.68,synthetic
+2026-02-16,Grocery Market,Food,142.75,synthetic
+2026-06-17,Streaming Media,Subscriptions,101.62,synthetic
+2025-11-23,Restaurant,Dining,146.14,synthetic
+2026-09-15,Grocery Market,Food,222.38,synthetic
+2026-05-30,Cafe North,Dining,80.81,synthetic
+2026-05-19,Rent Payment,Housing,1082.57,synthetic
+2026-04-02,Book Shop,Shopping,238.27,synthetic
+2026-05-09,Grocery Market,Food,67.77,synthetic
+2026-07-23,Power Utility,Bills,1624.13,synthetic
+2026-02-11,Book Shop,Shopping,12.67,synthetic
+2026-10-13,Fuel Station,Transport,16.07,synthetic
+2026-09-27,Pharmacy,Health,177.87,synthetic
+2026-09-15,Power Utility,Bills,231.06,synthetic
+2025-11-18,Pharmacy,Health,169.36,synthetic
+2026-07-30,City Transit,Transport,56.95,synthetic
+2026-02-01,Restaurant,Dining,60.07,synthetic
+2026-10-07,Pharmacy,Health,129.9,synthetic
+2026-01-07,Restaurant,Dining,221.2,synthetic
+2026-04-01,Pharmacy,Health,129.81,synthetic
+2026-07-22,Rent Payment,Housing,1746.31,synthetic
+2026-07-30,Fuel Station,Transport,9.75,synthetic
+2026-09-17,Book Shop,Shopping,176.3,synthetic
+2026-09-25,Rent Payment,Housing,1560.32,synthetic
+2026-10-20,Streaming Media,Subscriptions,199.83,synthetic
+2026-01-19,City Transit,Transport,143.85,synthetic
+2026-07-06,Streaming Media,Subscriptions,158.74,synthetic
+2026-06-01,Grocery Market,Food,118.95,synthetic
+2026-03-12,Power Utility,Bills,450.11,synthetic
+2025-11-08,City Transit,Transport,19.94,synthetic
+2026-04-27,Restaurant,Dining,79.27,synthetic
+2025-12-06,Grocery Market,Food,37.84,synthetic
+2026-01-03,Power Utility,Bills,345.97,synthetic
+2025-12-30,Book Shop,Shopping,55.35,synthetic
+2026-01-16,Book Shop,Shopping,16.69,synthetic
+2026-05-04,Restaurant,Dining,231.66,synthetic
+2026-07-17,Power Utility,Bills,1395.21,synthetic
+2026-05-13,Restaurant,Dining,174.14,synthetic
+2026-01-13,Power Utility,Bills,88.49,synthetic
+2026-07-02,Pharmacy,Health,56.55,synthetic
+2026-02-12,Book Shop,Shopping,60.12,synthetic
+2026-09-14,Cafe North,Dining,236.16,synthetic
+2026-07-18,Restaurant,Dining,108.16,synthetic
+2026-04-28,Grocery Market,Food,69.31,synthetic
+2026-08-13,Cafe North,Dining,59.74,synthetic
+2026-05-15,Grocery Market,Food,138.88,synthetic
+2026-05-29,Rent Payment,Housing,1556.24,synthetic
+2025-12-03,Cafe North,Dining,82.9,synthetic
+2026-05-21,Grocery Market,Food,144.86,synthetic
+2026-04-25,Rent Payment,Housing,924.03,synthetic
+2026-07-29,Grocery Market,Food,201.94,synthetic
+2025-12-28,Streaming Media,Subscriptions,150.19,synthetic
+2026-08-19,Restaurant,Dining,31.63,synthetic
+2026-02-05,Pharmacy,Health,33.13,synthetic
+2026-09-02,Book Shop,Shopping,46.32,synthetic
+2025-12-23,Book Shop,Shopping,38.92,synthetic
+2025-11-12,Grocery Market,Food,180.59,synthetic
+2026-02-23,Power Utility,Bills,1531.23,synthetic
+2026-06-02,Cafe North,Dining,109.04,synthetic
+2026-05-06,Pharmacy,Health,27.48,synthetic
+2025-11-19,Cafe North,Dining,132.39,synthetic
+2026-07-11,Rent Payment,Housing,1006.3,synthetic
+2026-03-04,City Transit,Transport,62.97,synthetic
+2026-08-14,Fuel Station,Transport,98.65,synthetic
+2026-07-16,Pharmacy,Health,96.81,synthetic
+2026-07-28,Book Shop,Shopping,210.13,synthetic
+2026-04-02,Restaurant,Dining,160.38,synthetic
+2026-08-17,City Transit,Transport,189.4,synthetic
+2026-08-01,Grocery Market,Food,230.25,synthetic
+2026-10-18,Cafe North,Dining,32.91,synthetic
+2026-05-19,Power Utility,Bills,343.36,synthetic
+2025-11-10,City Transit,Transport,118.56,synthetic
+2026-03-07,Grocery Market,Food,40.68,synthetic
+2026-01-08,Rent Payment,Housing,1171.5,synthetic
+2026-01-26,Grocery Market,Food,62.22,synthetic
+2026-01-01,Power Utility,Bills,631.82,synthetic
+2026-01-16,Pharmacy,Health,159.91,synthetic
+2026-03-01,Book Shop,Shopping,68.05,synthetic
+2026-07-02,Cafe North,Dining,160.85,synthetic
+2026-01-24,Book Shop,Shopping,178.03,synthetic
+2026-02-25,City Transit,Transport,87.53,synthetic
+2026-06-12,Restaurant,Dining,65.31,synthetic
+2026-01-03,Restaurant,Dining,167.7,synthetic
+2026-04-28,Streaming Media,Subscriptions,177.63,synthetic
+2026-09-28,Grocery Market,Food,102.33,synthetic
+2025-12-23,Restaurant,Dining,191.55,synthetic
+2026-05-24,Grocery Market,Food,181.91,synthetic
+2026-05-01,Rent Payment,Housing,741.48,synthetic
+2026-03-21,Fuel Station,Transport,196.96,synthetic
+2026-09-09,Power Utility,Bills,790.4,synthetic
+2026-05-21,Fuel Station,Transport,164.87,synthetic
+2025-12-16,Cafe North,Dining,135.77,synthetic
+2026-10-09,Book Shop,Shopping,160.77,synthetic
+2026-08-19,Power Utility,Bills,1374.33,synthetic
+2026-06-27,Streaming Media,Subscriptions,148.05,synthetic
+2026-02-23,Rent Payment,Housing,1597.28,synthetic
+2026-10-07,Restaurant,Dining,198.16,synthetic
+2026-02-06,Grocery Market,Food,136.77,synthetic
+2025-11-12,Cafe North,Dining,115.63,synthetic
+2026-04-13,Book Shop,Shopping,233.51,synthetic
+2026-01-24,Fuel Station,Transport,167.45,synthetic
+2026-04-11,Grocery Market,Food,49.92,synthetic
+2026-07-12,Restaurant,Dining,84.27,synthetic
+2026-04-22,Restaurant,Dining,190.19,synthetic
+2026-01-21,City Transit,Transport,142.53,synthetic
+2026-08-25,Restaurant,Dining,106.08,synthetic
+2026-04-12,Power Utility,Bills,1637.0,synthetic
+2026-09-14,Power Utility,Bills,1269.38,synthetic
+2026-01-21,Rent Payment,Housing,873.18,synthetic
+2025-12-15,Streaming Media,Subscriptions,190.55,synthetic
+2026-11-02,Rent Payment,Housing,700.68,synthetic
+2026-01-27,Pharmacy,Health,202.95,synthetic
+2026-10-11,City Transit,Transport,156.26,synthetic
+2026-04-04,City Transit,Transport,182.64,synthetic
+2026-10-10,Streaming Media,Subscriptions,113.81,synthetic
+2025-12-20,Cafe North,Dining,113.3,synthetic
+2026-04-05,Pharmacy,Health,30.48,synthetic
+2026-08-27,Power Utility,Bills,184.36,synthetic
+2026-04-10,Power Utility,Bills,1243.95,synthetic
+2026-07-24,Pharmacy,Health,226.81,synthetic
+2026-10-29,Fuel Station,Transport,212.02,synthetic
+2026-05-05,Pharmacy,Health,74.15,synthetic
+2026-08-27,Cafe North,Dining,200.23,synthetic
+2026-05-30,Fuel Station,Transport,76.51,synthetic
+2026-07-26,Grocery Market,Food,38.56,synthetic
+2026-06-01,Book Shop,Shopping,34.69,synthetic
+2026-05-29,Grocery Market,Food,112.47,synthetic
+2026-01-09,Cafe North,Dining,54.92,synthetic
+2026-08-30,Grocery Market,Food,138.47,synthetic
+2026-05-23,City Transit,Transport,174.76,synthetic
+2026-08-01,Streaming Media,Subscriptions,16.52,synthetic
+2026-03-03,Cafe North,Dining,27.32,synthetic
+2026-07-01,Restaurant,Dining,224.47,synthetic
+2026-05-03,Grocery Market,Food,22.84,synthetic
+2026-03-03,City Transit,Transport,112.58,synthetic
+2025-12-29,Pharmacy,Health,10.07,synthetic
+2026-08-05,Cafe North,Dining,116.49,synthetic
+2026-03-12,Rent Payment,Housing,170.87,synthetic
+2026-05-20,Grocery Market,Food,229.74,synthetic
+2026-05-08,Book Shop,Shopping,54.33,synthetic
+2025-12-29,Fuel Station,Transport,75.82,synthetic
+2026-03-28,Pharmacy,Health,184.13,synthetic
+2026-08-02,Streaming Media,Subscriptions,199.94,synthetic
+2025-11-22,Power Utility,Bills,515.42,synthetic
+2026-04-17,Book Shop,Shopping,48.98,synthetic
+2026-03-26,Fuel Station,Transport,204.45,synthetic
+2026-01-15,Restaurant,Dining,132.6,synthetic
+2026-04-08,Power Utility,Bills,687.35,synthetic
+2026-05-09,Power Utility,Bills,1627.24,synthetic
+2026-09-05,City Transit,Transport,85.73,synthetic
+2026-04-15,City Transit,Transport,137.54,synthetic
+2026-05-02,Streaming Media,Subscriptions,56.65,synthetic
+2026-09-11,Book Shop,Shopping,139.73,synthetic
+2026-06-05,Cafe North,Dining,51.4,synthetic
+2026-07-22,Grocery Market,Food,62.68,synthetic
+2026-08-03,Streaming Media,Subscriptions,64.48,synthetic
+2026-05-19,Streaming Media,Subscriptions,175.71,synthetic
+2026-06-24,Rent Payment,Housing,99.71,synthetic
+2026-07-23,Cafe North,Dining,41.86,synthetic
+2025-11-05,Cafe North,Dining,179.99,synthetic
+2026-02-22,City Transit,Transport,235.41,synthetic
+2026-03-28,City Transit,Transport,104.26,synthetic
+2026-02-12,City Transit,Transport,164.51,synthetic
+2025-11-10,Rent Payment,Housing,1680.68,synthetic
+2026-03-07,Pharmacy,Health,45.38,synthetic
+2026-09-26,Grocery Market,Food,199.19,synthetic
+2026-05-24,Power Utility,Bills,1080.93,synthetic
+2026-03-16,Pharmacy,Health,39.73,synthetic
+2026-09-21,Pharmacy,Health,112.32,synthetic
+2026-07-06,Rent Payment,Housing,1772.11,synthetic
+2026-02-21,Rent Payment,Housing,848.39,synthetic
+2026-02-10,Cafe North,Dining,202.39,synthetic
+2026-04-30,Cafe North,Dining,125.86,synthetic
+2026-03-07,Rent Payment,Housing,853.32,synthetic
+2026-01-28,Power Utility,Bills,768.11,synthetic
+2026-02-08,Fuel Station,Transport,236.91,synthetic
+2026-01-26,Streaming Media,Subscriptions,74.93,synthetic
+2025-12-16,Fuel Station,Transport,51.89,synthetic
+2026-08-08,Pharmacy,Health,167.26,synthetic
+2025-11-23,Pharmacy,Health,182.06,synthetic
+2026-09-25,Fuel Station,Transport,165.18,synthetic
+2026-01-23,Restaurant,Dining,9.72,synthetic
+2026-08-20,Book Shop,Shopping,171.14,synthetic
+2026-05-31,Book Shop,Shopping,209.67,synthetic
+2026-08-13,Streaming Media,Subscriptions,68.71,synthetic
+2026-07-19,City Transit,Transport,134.27,synthetic
+2026-01-09,Book Shop,Shopping,190.03,synthetic
+2026-05-23,Restaurant,Dining,237.15,synthetic
+2026-05-19,Pharmacy,Health,186.65,synthetic
+2026-05-19,Grocery Market,Food,56.92,synthetic
+2026-05-03,Cafe North,Dining,154.57,synthetic
+2026-01-09,Rent Payment,Housing,1146.39,synthetic
+2026-07-06,Grocery Market,Food,229.64,synthetic
+2026-03-03,Cafe North,Dining,78.42,synthetic
+2026-06-17,Rent Payment,Housing,871.12,synthetic
+2025-12-10,Power Utility,Bills,1580.64,synthetic
+2026-02-10,Grocery Market,Food,92.02,synthetic
+2026-04-30,Cafe North,Dining,80.42,synthetic
+2026-06-25,Fuel Station,Transport,55.53,synthetic
+2026-05-02,Power Utility,Bills,1414.36,synthetic
+2026-02-08,Power Utility,Bills,1192.13,synthetic
+2026-07-09,Power Utility,Bills,257.81,synthetic
+2026-01-08,Book Shop,Shopping,81.84,synthetic
+2026-02-28,Cafe North,Dining,168.36,synthetic
+2026-10-22,City Transit,Transport,135.42,synthetic
+2026-01-26,Streaming Media,Subscriptions,206.71,synthetic
+2026-07-29,Pharmacy,Health,217.36,synthetic
+2026-03-02,Rent Payment,Housing,1202.39,synthetic
+2026-03-13,Power Utility,Bills,1015.93,synthetic
+2026-06-17,City Transit,Transport,150.3,synthetic
+2026-08-11,Cafe North,Dining,89.84,synthetic
+2026-02-13,Restaurant,Dining,130.81,synthetic
+2026-03-11,Streaming Media,Subscriptions,179.03,synthetic
+2025-11-05,Rent Payment,Housing,418.07,synthetic
+2025-12-05,Restaurant,Dining,75.15,synthetic
+2026-07-16,City Transit,Transport,163.32,synthetic
+2026-04-11,Power Utility,Bills,850.9,synthetic
+2026-10-23,Restaurant,Dining,105.54,synthetic
+2026-11-03,Grocery Market,Food,213.54,synthetic
+2026-10-26,Grocery Market,Food,118.66,synthetic
+2026-08-10,City Transit,Transport,238.55,synthetic
+2026-01-14,Grocery Market,Food,101.21,synthetic
+2026-06-11,Restaurant,Dining,79.31,synthetic
+2026-07-21,Book Shop,Shopping,79.97,synthetic
+2026-09-04,Streaming Media,Subscriptions,198.18,synthetic
+2026-04-18,Fuel Station,Transport,143.54,synthetic
+2026-04-27,Streaming Media,Subscriptions,148.63,synthetic
+2026-07-03,Grocery Market,Food,102.98,synthetic
+2026-01-03,City Transit,Transport,32.64,synthetic
+2025-12-29,Grocery Market,Food,90.26,synthetic
+2025-12-12,Grocery Market,Food,217.93,synthetic
+2026-09-18,Grocery Market,Food,113.92,synthetic
+2025-11-22,Streaming Media,Subscriptions,59.66,synthetic
+2026-07-26,Grocery Market,Food,172.45,synthetic
+2025-11-16,Streaming Media,Subscriptions,142.75,synthetic
+2026-03-09,Book Shop,Shopping,184.14,synthetic
+2026-08-04,Grocery Market,Food,16.0,synthetic
+2025-11-14,City Transit,Transport,120.73,synthetic
+2026-04-24,Restaurant,Dining,32.01,synthetic
+2026-08-27,Rent Payment,Housing,930.71,synthetic
+2026-08-04,Book Shop,Shopping,18.64,synthetic
+2026-10-17,Restaurant,Dining,63.86,synthetic
+2026-03-21,Streaming Media,Subscriptions,89.91,synthetic
+2025-12-18,Fuel Station,Transport,22.59,synthetic
+2026-02-14,Streaming Media,Subscriptions,229.94,synthetic
+2026-01-13,Power Utility,Bills,140.17,synthetic
+2026-06-17,Restaurant,Dining,167.09,synthetic
+2026-08-07,Fuel Station,Transport,17.34,synthetic
+2026-03-19,Grocery Market,Food,47.53,synthetic
+2026-10-03,Power Utility,Bills,775.4,synthetic
+2026-10-20,Rent Payment,Housing,1159.55,synthetic
+2026-07-07,Streaming Media,Subscriptions,40.69,synthetic
+2026-01-05,Grocery Market,Food,108.99,synthetic
+2026-08-11,Restaurant,Dining,179.09,synthetic
+2026-09-04,Power Utility,Bills,551.85,synthetic
+2025-12-29,Grocery Market,Food,74.99,synthetic
+2026-03-31,Rent Payment,Housing,1141.16,synthetic
+2026-09-22,Restaurant,Dining,126.24,synthetic
+2026-09-12,Streaming Media,Subscriptions,162.84,synthetic
+2026-08-06,Power Utility,Bills,744.63,synthetic
+2025-12-28,Restaurant,Dining,20.32,synthetic
+2026-10-05,Streaming Media,Subscriptions,105.85,synthetic
+2026-03-04,Grocery Market,Food,196.31,synthetic
+2025-12-30,Power Utility,Bills,1797.07,synthetic
+2026-07-07,Power Utility,Bills,694.39,synthetic
+2026-01-04,Streaming Media,Subscriptions,212.38,synthetic
+2026-02-23,City Transit,Transport,154.39,synthetic
+2026-10-28,City Transit,Transport,228.33,synthetic
+2026-02-18,Rent Payment,Housing,346.95,synthetic
+2026-03-11,Book Shop,Shopping,155.11,synthetic
+2026-10-21,Streaming Media,Subscriptions,95.25,synthetic
+2026-08-26,Power Utility,Bills,1643.04,synthetic
+2025-12-15,Cafe North,Dining,195.73,synthetic
+2026-03-20,Grocery Market,Food,16.57,synthetic
+2026-05-10,Book Shop,Shopping,47.55,synthetic
+2025-11-30,Cafe North,Dining,77.77,synthetic
+2025-12-27,Pharmacy,Health,138.93,synthetic
+2026-01-09,Fuel Station,Transport,41.43,synthetic
+2026-02-09,Streaming Media,Subscriptions,145.14,synthetic
+2026-06-18,Rent Payment,Housing,1002.19,synthetic
+2025-11-18,Power Utility,Bills,653.41,synthetic
+2026-02-05,Rent Payment,Housing,1024.96,synthetic
+2025-11-26,Book Shop,Shopping,10.24,synthetic
+2026-09-28,Pharmacy,Health,178.74,synthetic
+2026-10-10,City Transit,Transport,137.59,synthetic
+2026-10-03,Fuel Station,Transport,60.21,synthetic
+2026-08-30,Book Shop,Shopping,77.68,synthetic
+2026-08-01,Fuel Station,Transport,19.15,synthetic
+2026-04-07,Cafe North,Dining,31.43,synthetic
+2026-08-22,Fuel Station,Transport,238.6,synthetic
+2026-07-23,Book Shop,Shopping,101.05,synthetic
+2026-04-12,Rent Payment,Housing,223.74,synthetic
+2025-12-21,City Transit,Transport,220.73,synthetic
+2026-03-07,City Transit,Transport,233.88,synthetic
+2026-06-03,Rent Payment,Housing,1296.89,synthetic
+2026-03-09,City Transit,Transport,93.63,synthetic
+2026-01-13,Restaurant,Dining,27.55,synthetic
+2026-09-21,Power Utility,Bills,1535.56,synthetic
+2026-05-29,Rent Payment,Housing,1177.71,synthetic
+2026-10-24,Restaurant,Dining,121.57,synthetic
+2026-03-01,City Transit,Transport,222.19,synthetic
+2026-08-28,Rent Payment,Housing,220.51,synthetic
+2025-11-14,Rent Payment,Housing,360.79,synthetic
+2026-06-29,Cafe North,Dining,10.06,synthetic
+2026-09-07,Rent Payment,Housing,1574.85,synthetic
+2025-11-30,Book Shop,Shopping,170.18,synthetic
+2026-10-04,Streaming Media,Subscriptions,111.24,synthetic
+2026-05-25,Rent Payment,Housing,1483.08,synthetic
+2026-01-05,Fuel Station,Transport,136.83,synthetic
+2026-09-10,Cafe North,Dining,166.11,synthetic
+2026-03-11,Book Shop,Shopping,57.57,synthetic
+2026-07-02,Grocery Market,Food,22.86,synthetic
+2026-06-28,Grocery Market,Food,24.06,synthetic
+2026-10-21,Power Utility,Bills,409.44,synthetic
+2025-12-28,Restaurant,Dining,63.68,synthetic
+2026-09-21,Pharmacy,Health,161.12,synthetic
+2026-05-08,Grocery Market,Food,9.46,synthetic
+2026-09-02,Fuel Station,Transport,11.14,synthetic
+2026-02-19,Pharmacy,Health,231.37,synthetic
+2026-10-25,City Transit,Transport,150.1,synthetic
+2026-01-08,Streaming Media,Subscriptions,140.59,synthetic
+2026-10-09,Power Utility,Bills,932.23,synthetic
+2026-10-07,Cafe North,Dining,188.46,synthetic
+2026-10-12,Rent Payment,Housing,936.34,synthetic
+2026-07-23,Restaurant,Dining,55.71,synthetic
+2026-09-05,Streaming Media,Subscriptions,32.45,synthetic
+2025-11-04,Grocery Market,Food,59.08,synthetic
+2026-04-09,Fuel Station,Transport,100.3,synthetic
+2026-05-29,Fuel Station,Transport,31.32,synthetic
+2026-06-27,Book Shop,Shopping,141.99,synthetic
+2026-06-19,Pharmacy,Health,217.44,synthetic
+2026-05-05,City Transit,Transport,106.47,synthetic
+2026-05-04,Streaming Media,Subscriptions,24.79,synthetic
+2026-09-26,City Transit,Transport,48.19,synthetic
+2025-12-11,Grocery Market,Food,43.43,synthetic
+2026-05-07,Pharmacy,Health,233.23,synthetic
+2026-01-09,Streaming Media,Subscriptions,101.93,synthetic
+2026-07-18,Grocery Market,Food,143.69,synthetic
+2026-07-04,Restaurant,Dining,232.23,synthetic
+2026-07-24,Pharmacy,Health,196.72,synthetic
+2026-08-17,Streaming Media,Subscriptions,10.36,synthetic
+2026-05-04,Restaurant,Dining,104.67,synthetic
+2026-03-18,City Transit,Transport,75.33,synthetic
+2026-02-23,Streaming Media,Subscriptions,227.96,synthetic
+2026-05-27,Pharmacy,Health,95.68,synthetic
+2026-07-07,Streaming Media,Subscriptions,222.13,synthetic
+2026-09-21,Power Utility,Bills,1522.99,synthetic
+2026-01-26,Rent Payment,Housing,337.11,synthetic
+2026-02-28,Streaming Media,Subscriptions,183.56,synthetic
+2026-08-01,Power Utility,Bills,818.07,synthetic
+2026-02-01,Pharmacy,Health,45.42,synthetic
+2026-08-22,Fuel Station,Transport,185.7,synthetic
+2026-06-11,Streaming Media,Subscriptions,95.38,synthetic
+2026-07-08,Restaurant,Dining,79.46,synthetic
+2026-02-11,Fuel Station,Transport,165.45,synthetic
+2026-04-19,City Transit,Transport,95.95,synthetic
+2026-07-23,Grocery Market,Food,98.88,synthetic
+2026-07-23,Rent Payment,Housing,143.56,synthetic
+2026-02-24,City Transit,Transport,179.03,synthetic
+2026-09-04,Pharmacy,Health,163.37,synthetic
+2026-09-18,Rent Payment,Housing,358.28,synthetic
+2026-02-11,Grocery Market,Food,154.12,synthetic
+2026-09-26,Rent Payment,Housing,1755.44,synthetic
+2026-01-17,Fuel Station,Transport,67.45,synthetic
+2026-09-20,Fuel Station,Transport,43.91,synthetic
+2026-05-29,Book Shop,Shopping,95.81,synthetic
+2025-11-24,Power Utility,Bills,425.38,synthetic
+2026-01-08,City Transit,Transport,60.53,synthetic
+2026-03-18,Pharmacy,Health,228.96,synthetic
+2026-10-14,Streaming Media,Subscriptions,167.25,synthetic
+2026-05-31,Cafe North,Dining,87.67,synthetic
+2026-01-25,Streaming Media,Subscriptions,70.81,synthetic
+2026-10-26,City Transit,Transport,140.55,synthetic
+2026-03-20,Fuel Station,Transport,184.76,synthetic
+2026-09-11,Pharmacy,Health,91.3,synthetic
+2026-01-26,Pharmacy,Health,36.87,synthetic
+2026-02-18,Pharmacy,Health,216.79,synthetic
+2026-09-11,Grocery Market,Food,93.25,synthetic
+2026-06-22,Rent Payment,Housing,68.31,synthetic
+2026-07-23,Rent Payment,Housing,943.62,synthetic
+2026-03-22,Rent Payment,Housing,770.37,synthetic
+2026-05-17,Streaming Media,Subscriptions,184.16,synthetic
+2026-03-12,City Transit,Transport,71.36,synthetic
+2026-05-03,City Transit,Transport,22.18,synthetic
+2026-10-24,Streaming Media,Subscriptions,185.77,synthetic
+2026-01-31,Cafe North,Dining,221.02,synthetic
+2026-04-19,Cafe North,Dining,170.37,synthetic
+2026-10-15,Grocery Market,Food,197.22,synthetic
+2026-02-15,Streaming Media,Subscriptions,52.43,synthetic
+2026-04-21,Rent Payment,Housing,753.85,synthetic
+2026-09-04,Fuel Station,Transport,114.65,synthetic
+2026-02-04,Book Shop,Shopping,187.88,synthetic
+2026-09-07,City Transit,Transport,99.75,synthetic
+2026-03-29,City Transit,Transport,153.77,synthetic
+2026-08-09,Rent Payment,Housing,317.74,synthetic
+2026-03-29,Streaming Media,Subscriptions,126.5,synthetic
+2026-09-25,Pharmacy,Health,51.94,synthetic
+2026-07-27,Streaming Media,Subscriptions,16.1,synthetic
+2026-03-12,Grocery Market,Food,151.45,synthetic
+2026-07-05,Pharmacy,Health,182.41,synthetic
+2026-10-29,Pharmacy,Health,231.54,synthetic
+2026-05-27,Cafe North,Dining,41.47,synthetic
+2026-05-28,City Transit,Transport,32.57,synthetic
+2026-05-23,Cafe North,Dining,11.27,synthetic
+2026-05-04,Cafe North,Dining,170.5,synthetic
+2026-06-14,Grocery Market,Food,87.03,synthetic
+2026-08-06,Pharmacy,Health,51.48,synthetic
+2026-07-04,Grocery Market,Food,166.35,synthetic
+2026-02-06,Streaming Media,Subscriptions,231.42,synthetic
+2026-03-14,Streaming Media,Subscriptions,52.62,synthetic
+2026-07-06,Restaurant,Dining,43.94,synthetic
+2026-10-19,Power Utility,Bills,1744.71,synthetic
+2026-09-13,Restaurant,Dining,134.55,synthetic
+2026-08-03,Rent Payment,Housing,829.11,synthetic
+2025-12-27,City Transit,Transport,119.98,synthetic
+2026-10-04,Fuel Station,Transport,35.8,synthetic
+2026-07-11,Cafe North,Dining,15.77,synthetic
+2026-04-18,Fuel Station,Transport,226.47,synthetic
+2025-11-14,Power Utility,Bills,340.87,synthetic
+2026-06-02,Fuel Station,Transport,76.72,synthetic
+2026-06-19,Restaurant,Dining,230.41,synthetic
+2026-04-19,Book Shop,Shopping,141.06,synthetic
+2026-10-16,Book Shop,Shopping,201.47,synthetic
+2026-11-02,Streaming Media,Subscriptions,70.95,synthetic
+2026-06-18,Restaurant,Dining,77.7,synthetic
+2025-12-02,Grocery Market,Food,16.52,synthetic
+2026-08-09,Fuel Station,Transport,72.79,synthetic
+2026-06-14,Fuel Station,Transport,117.46,synthetic
+2026-03-29,Cafe North,Dining,26.23,synthetic
+2025-11-28,Restaurant,Dining,121.53,synthetic
+2026-03-09,Restaurant,Dining,118.95,synthetic
+2026-01-10,Restaurant,Dining,82.04,synthetic
+2026-02-04,Cafe North,Dining,63.6,synthetic
+2026-05-05,Rent Payment,Housing,833.82,synthetic
+2026-06-24,Pharmacy,Health,169.65,synthetic
+2026-08-28,Grocery Market,Food,132.34,synthetic
+2025-12-17,Fuel Station,Transport,46.43,synthetic
+2026-07-05,Restaurant,Dining,200.85,synthetic
+2026-07-10,Pharmacy,Health,221.17,synthetic
+2026-06-27,Grocery Market,Food,44.92,synthetic
+2025-11-18,Cafe North,Dining,16.79,synthetic
+2026-10-22,Streaming Media,Subscriptions,125.82,synthetic
+2025-12-29,Grocery Market,Food,138.78,synthetic
+2026-03-10,Power Utility,Bills,95.75,synthetic
+2026-08-28,Cafe North,Dining,32.89,synthetic
+2025-12-17,Book Shop,Shopping,85.23,synthetic
+2026-03-20,Grocery Market,Food,215.01,synthetic
+2026-08-02,Pharmacy,Health,42.67,synthetic
+2026-11-04,Power Utility,Bills,604.64,synthetic
+2026-02-06,Streaming Media,Subscriptions,131.94,synthetic
+2026-08-28,Pharmacy,Health,205.43,synthetic
+2025-11-21,Fuel Station,Transport,169.69,synthetic
+2026-05-15,Fuel Station,Transport,227.58,synthetic
+2026-07-22,City Transit,Transport,209.29,synthetic
+2025-12-01,City Transit,Transport,131.82,synthetic
+2026-02-20,Grocery Market,Food,88.08,synthetic
+2025-12-30,Restaurant,Dining,130.19,synthetic
+2025-11-30,Pharmacy,Health,116.96,synthetic
+2026-03-06,Fuel Station,Transport,213.49,synthetic
+2026-01-12,Streaming Media,Subscriptions,12.5,synthetic
+2026-07-12,Fuel Station,Transport,203.62,synthetic
+2026-09-10,Grocery Market,Food,108.42,synthetic
+2025-11-13,City Transit,Transport,201.84,synthetic
+2026-05-21,City Transit,Transport,12.61,synthetic
+2026-04-15,Power Utility,Bills,159.72,synthetic
+2026-03-15,Rent Payment,Housing,437.81,synthetic
+2026-02-20,Fuel Station,Transport,106.23,synthetic
+2026-05-03,Fuel Station,Transport,149.14,synthetic
+2026-06-09,Restaurant,Dining,172.15,synthetic
+2025-11-10,Restaurant,Dining,17.21,synthetic
+2025-12-01,Pharmacy,Health,122.87,synthetic
+2025-11-15,Restaurant,Dining,96.2,synthetic
+2025-11-26,Cafe North,Dining,76.08,synthetic
+2026-09-19,Rent Payment,Housing,242.97,synthetic
+2025-11-16,Pharmacy,Health,17.72,synthetic
+2026-08-24,Book Shop,Shopping,104.52,synthetic
+2026-04-19,Streaming Media,Subscriptions,201.43,synthetic
+2026-04-04,Cafe North,Dining,176.45,synthetic
+2026-07-22,Book Shop,Shopping,32.05,synthetic
+2026-07-10,Power Utility,Bills,199.86,synthetic
+2026-10-05,Streaming Media,Subscriptions,90.51,synthetic
+2026-09-30,City Transit,Transport,113.54,synthetic
+2025-11-07,City Transit,Transport,232.43,synthetic
+2026-03-06,Restaurant,Dining,111.58,synthetic
+2026-09-08,Power Utility,Bills,1611.41,synthetic
+2026-08-17,City Transit,Transport,143.29,synthetic
+2025-11-12,Restaurant,Dining,53.06,synthetic
+2026-03-01,Cafe North,Dining,20.09,synthetic
+2026-04-09,Restaurant,Dining,108.16,synthetic
+2026-06-17,Fuel Station,Transport,124.61,synthetic
+2026-06-13,Rent Payment,Housing,248.54,synthetic
+2026-04-18,Power Utility,Bills,296.82,synthetic
+2025-12-24,Pharmacy,Health,11.38,synthetic
+2026-09-30,Pharmacy,Health,141.56,synthetic
+2026-05-10,Streaming Media,Subscriptions,133.58,synthetic
+2025-12-22,Fuel Station,Transport,230.7,synthetic
+2026-05-05,Book Shop,Shopping,197.52,synthetic
+2026-02-11,City Transit,Transport,97.6,synthetic
+2026-06-01,Streaming Media,Subscriptions,75.6,synthetic
+2026-07-06,Rent Payment,Housing,454.33,synthetic
+2026-06-29,Rent Payment,Housing,376.8,synthetic
+2026-01-03,Cafe North,Dining,99.93,synthetic
+2026-09-17,Pharmacy,Health,96.4,synthetic
+2026-02-13,City Transit,Transport,144.94,synthetic
+2026-06-22,Power Utility,Bills,1727.38,synthetic
+2026-04-30,City Transit,Transport,170.58,synthetic
+2025-11-19,Rent Payment,Housing,795.49,synthetic
+2026-04-01,Rent Payment,Housing,474.71,synthetic
+2026-04-03,Power Utility,Bills,458.36,synthetic
+2026-08-24,Fuel Station,Transport,168.78,synthetic
+2026-01-19,Cafe North,Dining,178.74,synthetic
+2026-10-14,Book Shop,Shopping,177.98,synthetic
+2026-03-22,Book Shop,Shopping,32.34,synthetic
+2026-07-12,Rent Payment,Housing,129.98,synthetic
+2025-12-25,Restaurant,Dining,179.59,synthetic
+2026-04-18,Streaming Media,Subscriptions,78.13,synthetic
+2026-05-14,Power Utility,Bills,369.84,synthetic
+2026-04-18,Restaurant,Dining,121.33,synthetic
+2026-01-19,City Transit,Transport,102.32,synthetic
+2026-03-09,Book Shop,Shopping,185.48,synthetic
+2025-12-13,Pharmacy,Health,187.89,synthetic
+2026-03-16,Power Utility,Bills,402.82,synthetic
+2026-08-20,Cafe North,Dining,37.29,synthetic
+2026-10-06,Fuel Station,Transport,121.74,synthetic
+2026-07-07,City Transit,Transport,44.25,synthetic
+2026-08-04,Book Shop,Shopping,66.54,synthetic
+2026-02-04,Restaurant,Dining,20.85,synthetic
+2026-06-24,Fuel Station,Transport,89.3,synthetic
+2026-08-25,Power Utility,Bills,1724.01,synthetic
+2026-04-18,Pharmacy,Health,175.66,synthetic
+2026-03-13,Power Utility,Bills,1257.61,synthetic
+2026-02-12,Grocery Market,Food,210.21,synthetic
+2026-10-16,Restaurant,Dining,158.99,synthetic
+2026-01-29,Book Shop,Shopping,127.51,synthetic
+2026-11-03,Pharmacy,Health,55.13,synthetic
+2026-05-13,Streaming Media,Subscriptions,64.21,synthetic
+2026-07-20,Fuel Station,Transport,18.42,synthetic
+2026-02-23,Book Shop,Shopping,105.88,synthetic
+2025-12-21,Book Shop,Shopping,116.7,synthetic
+2026-08-01,Rent Payment,Housing,641.8,synthetic
+2025-12-30,Power Utility,Bills,958.27,synthetic
+2026-10-30,Rent Payment,Housing,1416.59,synthetic
+2026-09-21,Book Shop,Shopping,8.52,synthetic
+2026-07-01,Restaurant,Dining,99.71,synthetic
+2026-05-03,Streaming Media,Subscriptions,41.16,synthetic
+2026-08-01,City Transit,Transport,25.27,synthetic
+2026-04-15,Pharmacy,Health,223.98,synthetic
+2026-05-31,Grocery Market,Food,221.1,synthetic
+2026-04-06,Book Shop,Shopping,239.98,synthetic
+2026-10-10,Book Shop,Shopping,16.64,synthetic
+2026-03-18,City Transit,Transport,64.16,synthetic
+2026-10-14,Book Shop,Shopping,56.63,synthetic
+2025-11-09,Streaming Media,Subscriptions,18.74,synthetic
+2026-01-05,Power Utility,Bills,551.31,synthetic
+2026-10-29,Grocery Market,Food,129.08,synthetic

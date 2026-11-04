@@ -1,6 +1,21 @@
-name,category,price,currency,rating
-Studio Pro Laptop,Computers,1499,USD,4.8
-QuietComfort Headphones,Audio,329,USD,4.7
-Everyday Smartwatch,Wearables,249,USD,4.5
-City Commuter Bike,Outdoors,799,USD,4.6
-Home Espresso Maker,Home,549,USD,4.4
+name,category,price,currency,rating,synthetic_note
+Studio Pro Laptop,Computers,1499,USD,4.8,curated demo listing; price is illustrative
+QuietComfort Headphones,Audio,329,USD,4.7,curated demo listing; price is illustrative
+Everyday Smartwatch,Wearables,249,USD,4.5,curated demo listing; price is illustrative
+City Commuter Bike,Outdoors,799,USD,4.6,curated demo listing; price is illustrative
+Home Espresso Maker,Home,549,USD,4.4,curated demo listing; price is illustrative
+Noise Cancel Earbuds,Audio,179,USD,4.5,curated demo listing; price is illustrative
+Creator Laptop 16,Computers,1899,USD,4.7,curated demo listing; price is illustrative
+Portable Monitor,Computers,289,USD,4.3,curated demo listing; price is illustrative
+Mechanical Keyboard,Computers,139,USD,4.6,curated demo listing; price is illustrative
+Ergonomic Chair,Home,649,USD,4.5,curated demo listing; price is illustrative
+Air Purifier,Home,279,USD,4.4,curated demo listing; price is illustrative
+Robot Vacuum,Home,399,USD,4.3,curated demo listing; price is illustrative
+Fitness Tracker,Wearables,129,USD,4.2,curated demo listing; price is illustrative
+Tablet 11,Computers,599,USD,4.6,curated demo listing; price is illustrative
+Mirrorless Camera,Cameras,1099,USD,4.7,curated demo listing; price is illustrative
+Compact Projector,Home,469,USD,4.2,curated demo listing; price is illustrative
+Standing Desk,Home,499,USD,4.5,curated demo listing; price is illustrative
+Smart Speaker Pair,Audio,219,USD,4.4,curated demo listing; price is illustrative
+Carry-on Luggage,Travel,249,USD,4.3,curated demo listing; price is illustrative
+Espresso Grinder,Home,199,USD,4.5,curated demo listing; price is illustrative

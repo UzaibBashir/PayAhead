@@ -2,7 +2,7 @@
 
 **Think Before You Spend. Buy When It Makes Sense.**
 
-A local financial decision MVP with a Streamlit interface, Flask API, SQLite database, JWT accounts, CSV transaction import, deterministic affordability scenarios, curated product catalogue, five advisory findings, purchase watches, an optional synthetic-data classifier, and server-side PayPal Sandbox order/capture endpoints.
+A local financial decision MVP with a Streamlit interface, Flask API, SQLite database, JWT accounts, CSV transaction import, deterministic affordability scenarios, curated 20-item demo catalogue, five selectable sample profiles, 1,000 labeled synthetic transactions, five specialist analysis roles, purchase watches, a reproducible expense classifier, and server-side PayPal Sandbox order/capture endpoints.
 
 ## Architecture
 
@@ -50,6 +50,6 @@ For PayPal use Sandbox buyer credentials; see `docs/PAYPAL_INTEGRATION.md`. Orde
 
 ## AI and limitations
 
-Finance numbers are deterministic. Five analysis roles return structured findings, not separate LLM calls. Price prediction is unavailable without price history. The optional classifier is synthetic and not connected to CSV categorization. No deep-learning model, anomaly classifier, learned forecast, external retailer search, or webhook verification is included. Scenario estimates are not guaranteed balances. Advice is educational, not financial advice. Never use live payment credentials.
+Finance numbers are deterministic. Five analysis roles return structured findings, not separate LLM calls. Historical transactions imported by a user feed a simple monthly net average when at least 30 rows exist; this is a baseline estimate, not a learned cash-balance forecast. Expense imports use the trained classifier when its model artifact exists, with a keyword fallback. Sample transactions and catalogue prices are synthetic/illustrative and are clearly labeled. No verified product price history, deep-learning model, live retailer research, or PayPal webhook verification is included. An Isolation Forest marks unusual imported expense amounts after 30+ rows; flags require manual review. Purchase watches are saved but do not trigger a background notification scheduler. Sandbox credentials are required to test payment approval and capture end to end. Scenario estimates are not guaranteed balances. Advice is educational, not financial advice. Never use live payment credentials.
 
 See [architecture](docs/ARCHITECTURE.md), [API](docs/API.md), [AI models](docs/AI_MODELS.md), [PayPal](docs/PAYPAL_INTEGRATION.md), [security](docs/SECURITY.md), and [demo](docs/DEMO_GUIDE.md).
