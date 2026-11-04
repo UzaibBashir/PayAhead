@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from werkzeug.security import generate_password_hash,check_password_hash
-app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-dev-change-this'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:5173')); db=SQLAlchemy(app); jwt=JWTManager(app)
+app=Flask(__name__); app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL','sqlite:///payahead.db'); app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False; app.config['SECRET_KEY']=os.getenv('SECRET_KEY','local-development-only-change-before-use-32bytes-min')\napp.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY','local-development-only-change-before-use-32bytes-min'); CORS(app,origins=os.getenv('FRONTEND_URL','http://localhost:5173')); db=SQLAlchemy(app); jwt=JWTManager(app)
 class User(db.Model):
  id=db.Column(db.Integer,primary_key=True); email=db.Column(db.String(255),unique=True,nullable=False); password=db.Column(db.String(255),nullable=False)
 class Profile(db.Model):
@@ -65,7 +65,7 @@ def update_profile():
  p.currency=str(d.get('currency',p.currency)).upper()[:3]; db.session.commit(); return jsonify(profile=profile(uid),metrics=metrics(profile(uid)))
 @app.get('/api/products')
 def products():
- q=request.args.get('q','').lower(); vals=PRODUCTS+[{'name':p.name,'category':p.category,'price':p.price,'currency':p.currency,'rating':p.rating,'image':p.image,'description':p.description} for p in Product.query.all()]; return jsonify(products=[p for p in vals if q in (p['name']+' '+p['category']).lower()])
+ q=request.args.get('q','').lower(); vals=PRODUCTS+[{'name':p.name,'category':p.category,'price':p.price,'currency':p.currency,'rating':p.rating,'image':p.image,'description':p.description} for p in Product.query.all() if p.name not in {x['name'] for x in PRODUCTS}]; return jsonify(products=[p for p in vals if q in (p['name']+' '+p['category']).lower()])
 @app.post('/api/analyze')
 def analyze():
  d=request.get_json() or {}; m=metrics(profile(current_user())); price=max(0,float(d.get('price',0))); name=str(d.get('product','Purchase'))[:160]; safe=m['disposableIncome']>=price and m['savings']-price>=max(0,m['fixedExpenses']+m['variableExpenses'])*.5; ratio=price/max(1,m['income'])*100
@@ -127,5 +127,7 @@ with app.app_context():
   for p in PRODUCTS:db.session.add(Product(**p))
   db.session.commit()
 if __name__=='__main__':app.run(port=int(os.getenv('PORT','5000')),debug=os.getenv('FLASK_DEBUG')=='1')
+
+
 
 
