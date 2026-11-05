@@ -135,13 +135,15 @@ elif page=='Explore products':
     if reviewed_price<=0: st.error('Enter a confirmed positive price before saving.')
     else:
      status,saved=api_post('/products',{'name':preview['name'],'category':'Other','price':reviewed_price,'currency':preview['currency'],'url':preview['url'],'description':'Page metadata reviewed by user; not independently verified.'})
-     st.success('Saved. Verify the price before checkout.') if status==201 else st.error(saved.get('error','Could not save product.'))
+     if status==201: st.success('Saved. Verify the price before checkout.')
+     else: st.error(saved.get('error','Could not save product.'))
  with st.expander('Add a product manually'):
   with st.form('add_product'):
    new_name=st.text_input('Product name'); new_category=st.text_input('Category','Other'); new_price=st.number_input('Listed price',min_value=0.0,step=10.0); new_currency=st.selectbox('Currency',['USD','EUR','GBP','CAD','AUD','JPY','INR']); new_url=st.text_input('Product page URL (saved for reference)'); new_description=st.text_area('Notes')
    if st.form_submit_button('Save product'):
     status,created=api_post('/products',{'name':new_name,'category':new_category,'price':new_price,'currency':new_currency,'url':new_url,'description':new_description})
-    st.success('Product saved. Its price is user-entered and not verified.') if status==201 else st.error(created.get('error','Could not save product.'))
+    if status==201: st.success('Product saved. Its price is user-entered and not verified.')
+    else: st.error(created.get('error','Could not save product.'))
  if st.session_state.get('price_lookup'):
   history=api_get('/price-history',params={'product':st.session_state['price_lookup']})
   if history and history.get('history'):
@@ -174,13 +176,17 @@ elif page=='Purchase advisor':
      if status==200 and order.get('approveUrl'): st.link_button('Approve in PayPal Sandbox',order['approveUrl'],use_container_width=True)
      else: st.error(order.get('error','Checkout unavailable.'))
 elif page=='Transactions':
- st.subheader('Recent activity'); tx=pd.DataFrame(dashboard.get('transactions',[])); st.dataframe(tx,use_container_width=True,hide_index=True) if not tx.empty else st.info('No transactions yet.')
+ st.subheader('Recent activity')
+ tx=pd.DataFrame(dashboard.get('transactions',[]))
+ if not tx.empty: st.dataframe(tx,use_container_width=True,hide_index=True)
+ else: st.info('No transactions yet.')
  uploaded=st.file_uploader('Import a CSV',type=['csv'],help='Required columns: date and amount. Optional: description, name or merchant.')
  if uploaded:
   st.write('Preview'); st.dataframe(pd.read_csv(uploaded).head(10),use_container_width=True,hide_index=True); uploaded.seek(0)
   if st.button('Import transactions',type='primary'):
    status,result=api_post('/transactions/import',files={'file':(uploaded.name,uploaded.getvalue(),'text/csv')})
-   st.success(f"Imported {result.get('imported',0)} transactions.") if status==200 else st.error(result.get('error','Import failed.'))
+   if status==200: st.success(f"Imported {result.get('imported',0)} transactions.")
+   else: st.error(result.get('error','Import failed.'))
  anomalies=api_get('/anomalies')
  if anomalies:
   st.subheader('Unusual amounts to review')
@@ -198,26 +204,32 @@ elif page=='Preferences':
    brand=st.text_input('Brand preferences',existing.get('brand',''))
    if st.form_submit_button('Save preferences',type='primary'):
     status,saved=api_put('/preferences',{'category':category,'budget':budget,'currency':preferred_currency,'brand':brand})
-    st.success('Preferences saved.') if status==200 else st.error(saved.get('error','Could not save preferences.'))
+    if status==200: st.success('Preferences saved.')
+    else: st.error(saved.get('error','Could not save preferences.'))
   if st.button('Delete saved preferences'):
-   status,deleted=api_delete('/preferences'); st.success('Preferences deleted.') if status==200 else st.error(deleted.get('error','Could not delete preferences.'))
+   status,deleted=api_delete('/preferences')
+   if status==200: st.success('Preferences deleted.')
+   else: st.error(deleted.get('error','Could not delete preferences.'))
 else:
  st.subheader('Purchase watches')
  if st.session_state.token and st.button('Check my watches now'):
   status,evaluated=api_post('/schedule/evaluate',{})
-  st.success(f"Checked {evaluated.get('checked',0)} watches; {len(evaluated.get('created',[]))} new alerts.") if status==200 else st.error(evaluated.get('error','Watch check failed.'))
+  if status==200: st.success(f"Checked {evaluated.get('checked',0)} watches; {len(evaluated.get('created',[]))} new alerts.")
+  else: st.error(evaluated.get('error','Watch check failed.'))
  if not st.session_state.token: st.info('Sign in to save a price or date watch.')
  else:
   with st.form('schedule_watch'):
    product_name=st.text_input('Product name'); target=st.number_input('Target price',min_value=0.0,step=10.0); due=st.date_input('Review by')
    if st.form_submit_button('Save watch',type='primary'):
     status,result=api_post('/schedule',{'product':product_name,'target':target,'due':due.isoformat()})
-    st.success('Watch saved.') if status==201 else st.error(result.get('error','Could not save watch.'))
+    if status==201: st.success('Watch saved.')
+    else: st.error(result.get('error','Could not save watch.'))
   result=api_get('/schedule')
   if result and result.get('schedules'): st.dataframe(pd.DataFrame(result['schedules']),use_container_width=True,hide_index=True)
   alert_data=api_get('/alerts')
   if alert_data and alert_data.get('alerts'):
-   st.subheader('Alerts'); [st.warning(a['message']) for a in alert_data['alerts']]
+   st.subheader('Alerts')
+   for alert in alert_data['alerts']: st.warning(alert['message'])
  st.subheader('Cash-flow outlook')
  forecast=api_get('/forecast')
  if forecast: st.info(f"Method: {forecast['method']}. Monthly net estimate: {fmt(forecast['monthlyNet'])}. {forecast['note']}")
