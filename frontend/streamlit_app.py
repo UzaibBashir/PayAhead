@@ -1,6 +1,11 @@
 import os
+import sys
+from pathlib import Path
 import streamlit as st
 import pandas as pd
+
+REPO_ROOT=str(Path(__file__).resolve().parents[1])
+if REPO_ROOT not in sys.path: sys.path.insert(0,REPO_ROOT)
 from frontend.local_api import request as local_request
 
 st.set_page_config(page_title='PayAhead',page_icon='🌿',layout='wide',initial_sidebar_state='expanded')
